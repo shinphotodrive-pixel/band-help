@@ -18,7 +18,7 @@
 터미널에서 아래 명령어를 실행하여 생성한 GitHub 리포지토리로 코드를 업로드합니다:
 
 ```bash
-git remote add origin https://github.com/<본인아이디>/<리포지토리이름>.git
+git remote add origin https://github.com/shinphotodrive-pixel/band-help.git
 git push -u origin main
 ```
 
