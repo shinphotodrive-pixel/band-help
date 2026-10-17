@@ -96,19 +96,23 @@
 
     <main class="max-w-5xl mx-auto px-4 py-8 sm:px-6 lg:px-8 flex-1 w-full">
         
-        <!-- 상단 3개 탭 네비게이션 -->
-        <nav class="grid grid-cols-1 sm:grid-cols-3 border border-gray-200/90 mb-8 bg-white p-1.5 rounded-2xl shadow-sm gap-2" aria-label="메인 탭">
-            <button id="tabBtnRescue" onclick="switchTab('rescue')" class="py-3 px-4 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all shadow-xs bg-red-600 text-white cursor-pointer">
+        <!-- 상단 4개 탭 네비게이션 -->
+        <nav class="grid grid-cols-2 lg:grid-cols-4 border border-gray-200/90 mb-8 bg-white p-1.5 rounded-2xl shadow-sm gap-2" aria-label="메인 탭">
+            <button id="tabBtnRescue" onclick="switchTab('rescue')" class="py-3 px-2 sm:px-4 rounded-xl font-bold text-xs sm:text-sm md:text-base flex items-center justify-center gap-1.5 sm:gap-2 transition-all shadow-xs bg-red-600 text-white cursor-pointer">
                 <i class="fa-solid fa-shield-halved"></i>
                 <span>🚨 긴급 피해 복구</span>
             </button>
-            <button id="tabBtnCatch" onclick="switchTab('catch')" class="py-3 px-4 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all text-gray-600 hover:text-gray-900 hover:bg-gray-100 cursor-pointer">
+            <button id="tabBtnCatch" onclick="switchTab('catch')" class="py-3 px-2 sm:px-4 rounded-xl font-bold text-xs sm:text-sm md:text-base flex items-center justify-center gap-1.5 sm:gap-2 transition-all text-gray-600 hover:text-gray-900 hover:bg-gray-100 cursor-pointer">
                 <i class="fa-solid fa-user-secret text-indigo-600"></i>
                 <span>🕵️‍♂️ 해커 잡는 방법</span>
             </button>
-            <button id="tabBtnCases" onclick="switchTab('cases')" class="py-3 px-4 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all text-gray-600 hover:text-gray-900 hover:bg-gray-100 cursor-pointer">
+            <button id="tabBtnCases" onclick="switchTab('cases')" class="py-3 px-2 sm:px-4 rounded-xl font-bold text-xs sm:text-sm md:text-base flex items-center justify-center gap-1.5 sm:gap-2 transition-all text-gray-600 hover:text-gray-900 hover:bg-gray-100 cursor-pointer">
                 <i class="fa-solid fa-book-skull text-amber-600"></i>
-                <span>📂 유사 해킹 사례 (5개년)</span>
+                <span>📂 유사 해킹 사례</span>
+            </button>
+            <button id="tabBtnVictims" onclick="switchTab('victims')" class="py-3 px-2 sm:px-4 rounded-xl font-bold text-xs sm:text-sm md:text-base flex items-center justify-center gap-1.5 sm:gap-2 transition-all text-gray-600 hover:text-gray-900 hover:bg-gray-100 cursor-pointer">
+                <i class="fa-solid fa-hand-holding-dollar text-emerald-600"></i>
+                <span>👥 피해 회원용 (지급정지)</span>
             </button>
         </nav>
 
@@ -167,6 +171,23 @@
                         </ul>
                     </div>
                 </div>
+            </div>
+
+            <!-- 피해 회원 구제 긴급 바로가기 배너 -->
+            <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white p-4 sm:p-5 rounded-2xl shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center shrink-0 text-xl">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-base sm:text-lg">회원이 사기범 계좌로 돈을 입금했거나 악성링크를 눌렀나요?</h3>
+                        <p class="text-xs sm:text-sm text-emerald-100">송금 후 10분 골든타임! 24시간 은행별 계좌 지급정지 및 피해구제 가이드를 확인하세요.</p>
+                    </div>
+                </div>
+                <button onclick="switchTab('victims')" class="shrink-0 bg-white text-emerald-900 hover:bg-emerald-50 font-bold px-4 py-2.5 rounded-xl text-xs sm:text-sm transition shadow-xs flex items-center gap-1.5 cursor-pointer">
+                    <span>피해 회원 구제 가이드 보기</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
             </div>
 
             <!-- Step 1: 긴급 초동 조치 -->
@@ -850,6 +871,554 @@
             </section>
 
         </div>
+
+        <!-- 탭 4: 피해 회원 구제 (계좌 지급정지 및 사기 피해 신고) -->
+        <div id="tabVictims" class="hidden space-y-8">
+            <!-- 골든타임 경고 배너 -->
+            <div class="bg-gradient-to-r from-emerald-600 via-teal-700 to-cyan-800 text-white rounded-2xl p-6 sm:p-8 shadow-md">
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                    <div class="space-y-2">
+                        <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-xs px-3 py-1 rounded-full text-xs font-semibold tracking-wide">
+                            <span class="w-2 h-2 rounded-full bg-amber-300 animate-ping"></span>
+                            골든타임 10분 이내 긴급 조치
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-black tracking-tight">👥 피해 회원용 사기 피해 신고 및 계좌 지급정지 안내</h2>
+                        <p class="text-emerald-100 text-sm sm:text-base leading-relaxed max-w-2xl">
+                            해커('이상철', '전시숙' 등)의 방장 사칭 특가 판매글이나 1:1 대화에 속아 <strong>사기범 계좌로 돈을 송금했거나 악성 링크(.apk)를 클릭한 회원</strong>을 위한 긴급 구제 가이드입니다. 
+                            사기범이 돈을 인출하기 전에 지체 없이 아래 순서대로 계좌 지급정지 및 경찰 신고를 진행하십시오.
+                        </p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row md:flex-col gap-2.5 w-full md:w-auto shrink-0">
+                        <a href="tel:112" class="bg-white text-emerald-900 hover:bg-emerald-50 px-5 py-3 rounded-xl font-bold text-center text-sm shadow transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-phone-volume text-red-600 animate-pulse text-base"></i>
+                            <span>경찰청 긴급신고 (112)</span>
+                        </a>
+                        <a href="tel:1332" class="bg-emerald-900/60 hover:bg-emerald-900/80 text-white border border-white/30 px-5 py-2.5 rounded-xl font-bold text-center text-xs transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-building-columns"></i>
+                            <span>금융감독원 (1332)</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 핵심 3대 대응 원칙 요약 카드 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div class="bg-white p-6 rounded-2xl border border-emerald-200/80 shadow-xs relative overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 font-black text-lg flex items-center justify-center mb-4">1</div>
+                        <h3 class="font-bold text-gray-900 text-lg mb-2">즉시 유선 지급정지 요청</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            사기범 계좌 개설 은행 콜센터 또는 112로 지금 즉시 전화하여 <strong>'사기이용계좌 지급정지'</strong>를 요청하십시오. 범인이 현금을 인출하기 전 계좌를 묶는 것이 가장 시급합니다.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-gray-100 flex items-center text-xs font-semibold text-emerald-700">
+                        <i class="fa-regular fa-clock mr-1.5"></i> 송금 직후 10분 내 최우선 실행
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-emerald-200/80 shadow-xs relative overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-700 font-black text-lg flex items-center justify-center mb-4">2</div>
+                        <h3 class="font-bold text-gray-900 text-lg mb-2">경찰서 방문·확인원 발급</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            본인 은행 앱에서 <strong>이체확인증</strong>(송금자·수취계좌 명시)을 발급받고 밴드 대화/판매글 캡처를 지참하여 관할 경찰서 사이버수사팀에서 <strong>사건사고사실확인원</strong>을 교부받으십시오.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-gray-100 flex items-center text-xs font-semibold text-teal-700">
+                        <i class="fa-solid fa-file-shield mr-1.5"></i> 3영업일 내 서류 제출 필수
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-emerald-200/80 shadow-xs relative overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-cyan-100 text-cyan-700 font-black text-lg flex items-center justify-center mb-4">3</div>
+                        <h3 class="font-bold text-gray-900 text-lg mb-2">은행에 피해구제신청서 제출</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            유선 지급정지 후 <strong>3영업일 이내</strong>에 경찰서 확인원과 피해구제신청서를 은행에 서면 제출해야 지급정지가 유지되고 금융감독원 채권소멸 환급 절차가 개시됩니다.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-gray-100 flex items-center text-xs font-semibold text-cyan-700">
+                        <i class="fa-solid fa-hand-holding-dollar mr-1.5"></i> 미제출 시 지급정지 자동 해제됨
+                    </div>
+                </div>
+            </div>
+
+            <!-- 섹션 1: 📞 24시간 은행별 지급정지 긴급 직통 콜센터 -->
+            <section class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="border-b border-gray-100 bg-slate-50/80 px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-emerald-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-sm">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-lg sm:text-xl font-bold text-gray-900">24시간 은행별 지급정지 긴급 직통 전화번호</h2>
+                            <p class="text-xs text-gray-500">사기범에게 돈을 보낸 '수취은행' 또는 본인이 송금한 '출금은행'으로 즉시 전화하십시오.</p>
+                        </div>
+                    </div>
+                    <!-- 간이 검색 필터 -->
+                    <div class="relative w-full sm:w-60">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-400 text-xs"></i>
+                        <input type="text" id="bankSearchInput" onkeyup="filterBanks()" placeholder="은행명 검색 (예: 카카오, 토스, 국민)" class="w-full pl-8 pr-3 py-1.5 text-xs rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                </div>
+
+                <div class="p-6">
+                    <!-- 상담원 통화 멘트 가이드 박스 -->
+                    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-bullhorn text-amber-600 mt-1"></i>
+                            <div class="space-y-1 w-full">
+                                <h4 class="text-sm font-bold text-amber-900">은행 상담원 연결 시 말해야 하는 핵심 멘트 (전화 걸고 그대로 읽으세요)</h4>
+                                <div class="text-xs text-amber-900 leading-relaxed font-mono bg-white p-3 rounded-lg border border-amber-200 select-all">
+                                    "네이버 밴드 해킹 및 방장 사칭 사기로 방금 [사기범 은행명] 계좌번호 [000-000-000000] (예금주: [이름])으로 [금액]원을 송금했습니다. 통신사기피해환급법에 따라 해당 사기이용계좌의 긴급 지급정지를 요청합니다!"
+                                </div>
+                                <p class="text-xs text-amber-700">※ 야간/주말/공휴일에도 24시간 사고신고 ARS는 항상 운영됩니다. 단축번호 <strong>사고신고(보통 8번 또는 0번)</strong>를 누르시면 신속히 연결됩니다.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 은행 카드 그리드 (14개 주요 금융사) -->
+                    <div id="bankListGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                        <!-- 카카오뱅크 -->
+                        <div class="bank-card border border-gray-200 rounded-xl p-4 hover:border-emerald-500 hover:shadow-xs transition bg-white" data-bank-name="카카오뱅크 kakao" data-bank-tel="1599-3333">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold text-gray-900 flex items-center gap-1.5">
+                                    <span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span>
+                                    카카오뱅크
+                                </span>
+                                <span class="text-xs bg-emerald-50 text-emerald-700 font-semibold px-2 py-0.5 rounded">24시간 운영</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-3">사고신고 ARS: 1599-3333 (보이스피싱/사기 전담)</p>
+                            <a href="tel:15993333" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-lg text-xs flex items-center justify-center gap-1.5 transition">
+                                <i class="fa-solid fa-phone"></i> 1599-3333 통화 연결
+                            </a>
+                        </div>
+
+                        <!-- 토스뱅크 -->
+                        <div class="bank-card border border-gray-200 rounded-xl p-4 hover:border-emerald-500 hover:shadow-xs transition bg-white" data-bank-name="토스뱅크 toss" data-bank-tel="1661-7654">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold text-gray-900 flex items-center gap-1.5">
+                                    <span class="w-3 h-3 rounded-full bg-blue-500 inline-block"></span>
+                                    토스뱅크 (Toss)
+                                </span>
+                                <span class="text-xs bg-emerald-50 text-emerald-700 font-semibold px-2 py-0.5 rounded">24시간 전담</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-3">사고 및 피해구제 신고: 1661-7654</p>
+                            <a href="tel:16617654" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-lg text-xs flex items-center justify-center gap-1.5 transition">
+                                <i class="fa-solid fa-phone"></i> 1661-7654 통화 연결
+                            </a>
+                        </div>
+
+                        <!-- 케이뱅크 -->
+                        <div class="bank-card border border-gray-200 rounded-xl p-4 hover:border-emerald-500 hover:shadow-xs transition bg-white" data-bank-name="케이뱅크 kbank" data-bank-tel="1522-1000">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold text-gray-900 flex items-center gap-1.5">
+                                    <span class="w-3 h-3 rounded-full bg-indigo-500 inline-block"></span>
+                                    케이뱅크 (K-Bank)
+                                </span>
+                                <span class="text-xs bg-emerald-50 text-emerald-700 font-semibold px-2 py-0.5 rounded">24시간 운영</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-3">고객센터 및 사고신고: 1522-1000</p>
+                            <a href="tel:15221000" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-lg text-xs flex items-center justify-center gap-1.5 transition">
+                                <i class="fa-solid fa-phone"></i> 1522-1000 통화 연결
+                            </a>
+                        </div>
+
+                        <!-- KB국민은행 -->
+                        <div class="bank-card border border-gray-200 rounded-xl p-4 hover:border-emerald-500 hover:shadow-xs transition bg-white" data-bank-name="KB국민은행 국민은행 kb" data-bank-tel="1588-9999">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold text-gray-900 flex items-center gap-1.5">
+                                    <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+                                    KB국민은행
+                                </span>
+                                <span class="text-xs bg-gray-100 text-gray-700 font-semibold px-2 py-0.5 rounded">ARS #8번</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-3">사고신고 직통: 1588-9999 / 1599-9999</p>
+                            <a href="tel:15889999" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-lg text-xs flex items-center justify-center gap-1.5 transition">
+                                <i class="fa-solid fa-phone"></i> 1588-9999 통화 연결
+                            </a>
+                        </div>
+
+                        <!-- 신한은행 -->
+                        <div class="bank-card border border-gray-200 rounded-xl p-4 hover:border-emerald-500 hover:shadow-xs transition bg-white" data-bank-name="신한은행 shinhan" data-bank-tel="1577-8000">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold text-gray-900 flex items-center gap-1.5">
+                                    <span class="w-3 h-3 rounded-full bg-blue-600 inline-block"></span>
+                                    신한은행
+                                </span>
+                                <span class="text-xs bg-gray-100 text-gray-700 font-semibold px-2 py-0.5 rounded">ARS #8번</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-3">사고신고 직통: 1577-8000 / 1599-8000</p>
+                            <a href="tel:15778000" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-lg text-xs flex items-center justify-center gap-1.5 transition">
+                                <i class="fa-solid fa-phone"></i> 1577-8000 통화 연결
+                            </a>
+                        </div>
+
+                        <!-- 우리은행 -->
+                        <div class="bank-card border border-gray-200 rounded-xl p-4 hover:border-emerald-500 hover:shadow-xs transition bg-white" data-bank-name="우리은행 woori" data-bank-tel="1588-5000">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold text-gray-900 flex items-center gap-1.5">
+                                    <span class="w-3 h-3 rounded-full bg-sky-500 inline-block"></span>
+                                    우리은행
+                                </span>
+                                <span class="text-xs bg-gray-100 text-gray-700 font-semibold px-2 py-0.5 rounded">ARS #8번</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-3">사고신고 직통: 1588-5000 / 1599-5000</p>
+                            <a href="tel:15885000" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-lg text-xs flex items-center justify-center gap-1.5 transition">
+                                <i class="fa-solid fa-phone"></i> 1588-5000 통화 연결
+                            </a>
+                        </div>
+
+                        <!-- 하나은행 -->
+                        <div class="bank-card border border-gray-200 rounded-xl p-4 hover:border-emerald-500 hover:shadow-xs transition bg-white" data-bank-name="하나은행 hana" data-bank-tel="1588-1111">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold text-gray-900 flex items-center gap-1.5">
+                                    <span class="w-3 h-3 rounded-full bg-teal-500 inline-block"></span>
+                                    하나은행
+                                </span>
+                                <span class="text-xs bg-gray-100 text-gray-700 font-semibold px-2 py-0.5 rounded">ARS #8번</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-3">사고신고 직통: 1588-1111 / 1599-1111</p>
+                            <a href="tel:15881111" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-lg text-xs flex items-center justify-center gap-1.5 transition">
+                                <i class="fa-solid fa-phone"></i> 1588-1111 통화 연결
+                            </a>
+                        </div>
+
+                        <!-- NH농협은행 -->
+                        <div class="bank-card border border-gray-200 rounded-xl p-4 hover:border-emerald-500 hover:shadow-xs transition bg-white" data-bank-name="NH농협은행 농협 nh" data-bank-tel="1588-2100">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold text-gray-900 flex items-center gap-1.5">
+                                    <span class="w-3 h-3 rounded-full bg-green-600 inline-block"></span>
+                                    NH농협은행 / 농·축협
+                                </span>
+                                <span class="text-xs bg-gray-100 text-gray-700 font-semibold px-2 py-0.5 rounded">ARS #8번</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-3">사고신고 직통: 1588-2100 / 1661-3000</p>
+                            <a href="tel:15882100" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-lg text-xs flex items-center justify-center gap-1.5 transition">
+                                <i class="fa-solid fa-phone"></i> 1588-2100 통화 연결
+                            </a>
+                        </div>
+
+                        <!-- IBK기업은행 -->
+                        <div class="bank-card border border-gray-200 rounded-xl p-4 hover:border-emerald-500 hover:shadow-xs transition bg-white" data-bank-name="IBK기업은행 기업은행 ibk" data-bank-tel="1566-2566">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold text-gray-900 flex items-center gap-1.5">
+                                    <span class="w-3 h-3 rounded-full bg-blue-700 inline-block"></span>
+                                    IBK기업은행
+                                </span>
+                                <span class="text-xs bg-gray-100 text-gray-700 font-semibold px-2 py-0.5 rounded">ARS #8번</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-3">사고신고 직통: 1566-2566 / 1588-2588</p>
+                            <a href="tel:15662566" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-lg text-xs flex items-center justify-center gap-1.5 transition">
+                                <i class="fa-solid fa-phone"></i> 1566-2566 통화 연결
+                            </a>
+                        </div>
+
+                        <!-- 우체국 -->
+                        <div class="bank-card border border-gray-200 rounded-xl p-4 hover:border-emerald-500 hover:shadow-xs transition bg-white" data-bank-name="우체국 우체국예금 epost" data-bank-tel="1588-1900">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold text-gray-900 flex items-center gap-1.5">
+                                    <span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span>
+                                    우체국예금
+                                </span>
+                                <span class="text-xs bg-gray-100 text-gray-700 font-semibold px-2 py-0.5 rounded">ARS #8번</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-3">사고신고 직통: 1588-1900</p>
+                            <a href="tel:15881900" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-lg text-xs flex items-center justify-center gap-1.5 transition">
+                                <i class="fa-solid fa-phone"></i> 1588-1900 통화 연결
+                            </a>
+                        </div>
+
+                        <!-- 새마을금고 -->
+                        <div class="bank-card border border-gray-200 rounded-xl p-4 hover:border-emerald-500 hover:shadow-xs transition bg-white" data-bank-name="새마을금고 mg" data-bank-tel="1599-9000">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold text-gray-900 flex items-center gap-1.5">
+                                    <span class="w-3 h-3 rounded-full bg-cyan-600 inline-block"></span>
+                                    새마을금고 (MG)
+                                </span>
+                                <span class="text-xs bg-gray-100 text-gray-700 font-semibold px-2 py-0.5 rounded">ARS #8번</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-3">사고신고 직통: 1599-9000 / 1588-8801</p>
+                            <a href="tel:15999000" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-lg text-xs flex items-center justify-center gap-1.5 transition">
+                                <i class="fa-solid fa-phone"></i> 1599-9000 통화 연결
+                            </a>
+                        </div>
+
+                        <!-- 신협 -->
+                        <div class="bank-card border border-gray-200 rounded-xl p-4 hover:border-emerald-500 hover:shadow-xs transition bg-white" data-bank-name="신협 신용협동조합" data-bank-tel="1566-6000">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-bold text-gray-900 flex items-center gap-1.5">
+                                    <span class="w-3 h-3 rounded-full bg-blue-400 inline-block"></span>
+                                    신협 (신용협동조합)
+                                </span>
+                                <span class="text-xs bg-gray-100 text-gray-700 font-semibold px-2 py-0.5 rounded">ARS #8번</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-3">사고신고 직통: 1566-6000 / 1644-6000</p>
+                            <a href="tel:15666000" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-lg text-xs flex items-center justify-center gap-1.5 transition">
+                                <i class="fa-solid fa-phone"></i> 1566-6000 통화 연결
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 섹션 2: 📑 사기 피해금 환급 절차 (전기통신금융사기 피해구제 4단계) -->
+            <section class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="border-b border-gray-100 bg-slate-50/80 px-6 py-4 flex items-center gap-3">
+                    <div class="bg-teal-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-sm">
+                        <i class="fa-solid fa-list-check"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-lg sm:text-xl font-bold text-gray-900">사기 피해금 환급 4단계 로드맵 (돈 돌려받는 법)</h2>
+                        <p class="text-xs text-gray-500">통신사기피해환급법에 따라 동결된 사기 계좌 잔액 범위 내에서 피해금을 환급받는 법정 절차</p>
+                    </div>
+                </div>
+
+                <div class="p-6 space-y-6">
+                    <div class="relative border-l-2 border-teal-200 ml-4 pl-6 space-y-8">
+                        <!-- 단계 1 -->
+                        <div class="relative">
+                            <span class="absolute -left-[35px] top-0 w-8 h-8 rounded-full bg-teal-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">1</span>
+                            <div class="space-y-1.5">
+                                <div class="flex items-center gap-2">
+                                    <h4 class="font-bold text-gray-900 text-base">유선 긴급 지급정지 신청 (즉시 효력 발생)</h4>
+                                    <span class="text-xs font-semibold bg-red-100 text-red-700 px-2 py-0.5 rounded">송금 직후 즉시</span>
+                                </div>
+                                <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                                    사기범 계좌가 속한 은행 고객센터 또는 경찰청(112)으로 전화하여 사기이용계좌 긴급 지급정지를 요청합니다. 
+                                    통화 즉시 해당 계좌의 입출금 및 인터넷 뱅킹, ATM 인출이 전면 정지됩니다.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- 단계 2 -->
+                        <div class="relative">
+                            <span class="absolute -left-[35px] top-0 w-8 h-8 rounded-full bg-teal-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">2</span>
+                            <div class="space-y-1.5">
+                                <div class="flex items-center gap-2">
+                                    <h4 class="font-bold text-gray-900 text-base">경찰서 방문 및 「사건사고사실확인원」 발급</h4>
+                                    <span class="text-xs font-semibold bg-amber-100 text-amber-800 px-2 py-0.5 rounded">지급정지 후 즉시 방문</span>
+                                </div>
+                                <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                                    가까운 경찰서(파출소 제외, 사이버수사팀 또는 민원실)에 방문하여 피해 진술서를 작성하고 <strong>「사건사고사실확인원」</strong>을 발급받으십시오.
+                                </p>
+                                <div class="bg-gray-50 border border-gray-200 p-3 rounded-xl text-xs space-y-1">
+                                    <strong class="text-gray-800">📌 경찰서 지참 필수 준비물:</strong>
+                                    <ul class="list-disc list-inside text-gray-600 space-y-0.5">
+                                        <li>신분증 (주민등록증 또는 운전면허증)</li>
+                                        <li><strong>이체확인증</strong> (본인 송금 은행 앱에서 출력 - 보낸 사람, 받는 계좌번호, 받는 사람 이름 명시)</li>
+                                        <li>사기 밴드 캡처본 (방장 사칭 판매글, 계좌번호 안내 1:1 대화 내용)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 단계 3 -->
+                        <div class="relative">
+                            <span class="absolute -left-[35px] top-0 w-8 h-8 rounded-full bg-teal-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">3</span>
+                            <div class="space-y-1.5">
+                                <div class="flex items-center gap-2">
+                                    <h4 class="font-bold text-gray-900 text-base">은행에 「피해구제신청서」 서면 제출</h4>
+                                    <span class="text-xs font-semibold bg-red-100 text-red-700 px-2 py-0.5 rounded">지급정지일로부터 3영업일 이내 엄수!</span>
+                                </div>
+                                <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                                    유선 지급정지는 <strong>3영업일간 임시 효력</strong>만 갖습니다. 기한 내에 경찰서에서 받은 <strong>사건사고사실확인원</strong>과 <strong>피해구제신청서</strong>(은행 비치)를 지급정지 신청 은행 지점에 방문 또는 팩스로 제출해야 영구 정지됩니다.
+                                </p>
+                                <p class="text-xs text-rose-600 font-medium">⚠️ 3영업일 내 서류를 미제출할 경우 사기범 계좌의 지급정지가 자동 해제되어 사기범이 돈을 찾아갈 수 있습니다.</p>
+                            </div>
+                        </div>
+
+                        <!-- 단계 4 -->
+                        <div class="relative">
+                            <span class="absolute -left-[35px] top-0 w-8 h-8 rounded-full bg-teal-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">4</span>
+                            <div class="space-y-1.5">
+                                <div class="flex items-center gap-2">
+                                    <h4 class="font-bold text-gray-900 text-base">금융감독원 채권소멸절차 개시 및 피해환급금 결정</h4>
+                                    <span class="text-xs font-semibold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">약 2~3개월 소요</span>
+                                </div>
+                                <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                                    은행에서 금융감독원에 피해구제신청을 통보하면, 금감원 홈페이지 전자공고를 통해 2개월간 채권소멸 공고를 진행합니다. 
+                                    명의인의 이의제기가 없을 경우 해당 계좌의 잔액 한도 내에서 피해자별 피해금액에 비례하여 본인 계좌로 환급 입금됩니다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 섹션 3: 📱 외부 링크 / 악성 APK 파일을 클릭했을 때 비상 대처 5계명 -->
+            <section class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="border-b border-gray-100 bg-slate-50/80 px-6 py-4 flex items-center gap-3">
+                    <div class="bg-red-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-sm">
+                        <i class="fa-solid fa-shield-virus"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-lg sm:text-xl font-bold text-gray-900">링크(.apk)를 누르거나 앱을 설치한 경우 스마트폰 긴급 조치 5계명</h2>
+                        <p class="text-xs text-gray-500">스마트폰 원격제어, 금융인증서 탈취, 신분증 도용, 소액결제 피해 100% 차단</p>
+                    </div>
+                </div>
+
+                <div class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-xl border border-red-100 bg-red-50/50 flex items-start gap-3">
+                            <div class="bg-red-600 text-white font-bold text-xs w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5">1</div>
+                            <div class="space-y-1">
+                                <strong class="text-sm font-bold text-gray-900">즉시 비행기 탑승 모드(Airplane Mode) 켜기</strong>
+                                <p class="text-xs text-gray-600 leading-relaxed">
+                                    스마트폰 설정에서 비행기 탑승 모드를 켜 Wi-Fi와 모바일 데이터를 즉시 끊으십시오. 해커의 실시간 원격제어 및 금융인증서 전송이 물리적으로 차단됩니다.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-red-100 bg-red-50/50 flex items-start gap-3">
+                            <div class="bg-red-600 text-white font-bold text-xs w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5">2</div>
+                            <div class="space-y-1">
+                                <strong class="text-sm font-bold text-gray-900">경찰청 '시티즌코난' 앱으로 악성앱 검사 및 삭제</strong>
+                                <p class="text-xs text-gray-600 leading-relaxed">
+                                    경찰청 공인 악성앱 탐지 앱 <strong>'시티즌코난'</strong>(또는 안랩 V3 Mobile Security)을 실행하여 스마트폰에 숨겨진 스파이웨어와 원격제어 APK를 즉시 삭제하십시오.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-red-100 bg-red-50/50 flex items-start gap-3">
+                            <div class="bg-red-600 text-white font-bold text-xs w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5">3</div>
+                            <div class="space-y-1">
+                                <strong class="text-sm font-bold text-gray-900">어카운트인포에서 '본인계좌 일괄지급정지' 등록</strong>
+                                <p class="text-xs text-gray-600 leading-relaxed">
+                                    금융결제원 <a href="https://www.payinfo.or.kr" target="_blank" class="text-blue-600 underline font-semibold">어카운트인포(payinfo.or.kr)</a> 웹사이트에서 본인 명의 모든 은행 및 2금융권 계좌 출금을 비대면으로 한 번에 일괄 지급정지하십시오.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-red-100 bg-red-50/50 flex items-start gap-3">
+                            <div class="bg-red-600 text-white font-bold text-xs w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5">4</div>
+                            <div class="space-y-1">
+                                <strong class="text-sm font-bold text-gray-900">엠세이퍼(M-Safer) 명의도용 알뜰폰 개통 차단</strong>
+                                <p class="text-xs text-gray-600 leading-relaxed">
+                                    한국정보통신진흥협회 <a href="https://www.msafer.or.kr" target="_blank" class="text-blue-600 underline font-semibold">엠세이퍼(msafer.or.kr)</a>에 공동인증서로 로그인하여 '이동전화 가입제한 서비스'를 켜 타인이 알뜰폰을 무단 개통하는 것을 원천 차단하십시오.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-red-100 bg-red-50/50 flex items-start gap-3 md:col-span-2">
+                            <div class="bg-red-600 text-white font-bold text-xs w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5">5</div>
+                            <div class="space-y-1">
+                                <strong class="text-sm font-bold text-gray-900">통신사 소액결제 및 콘텐츠이용료 즉시 0원 차단</strong>
+                                <p class="text-xs text-gray-600 leading-relaxed">
+                                    이동통신사(SKT 114, KT 114, LGU+ 114) 고객센터 앱이나 유선 전화를 통해 휴대폰 소액결제 한도를 즉시 '0원' 또는 '이용 차단'으로 변경하여 모바일 상품권 무단 결제를 막으십시오.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 섹션 4: 💬 방장 ➜ 피해 회원 전송용 1:1 안내 메시지 복사기 -->
+            <section class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="border-b border-gray-100 bg-slate-50/80 px-6 py-4 flex items-center gap-3">
+                    <div class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-sm">
+                        <i class="fa-solid fa-comment-dots"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-lg sm:text-xl font-bold text-gray-900">방장 ➜ 피해 회원 1:1 긴급 대응 가이드 복사기</h2>
+                        <p class="text-xs text-gray-500">피해를 입고 당황한 회원에게 즉시 복사하여 카카오톡 1:1 대화나 문자로 보내주십시오.</p>
+                    </div>
+                </div>
+
+                <div class="p-6">
+                    <!-- 서브 탭: 사기 송금 vs 악성링크 클릭 -->
+                    <div class="flex items-center border-b border-gray-200 mb-4 gap-2">
+                        <button id="victimTabBtnTransfer" onclick="selectVictimMsgTemplate('transfer')" class="py-2 px-3.5 text-xs sm:text-sm font-bold border-b-2 border-emerald-600 text-emerald-900 transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap">
+                            <i class="fa-solid fa-money-bill-transfer"></i>
+                            <span>사기 계좌 송금 회원용 가이드</span>
+                        </button>
+                        <button id="victimTabBtnPhishing" onclick="selectVictimMsgTemplate('phishing')" class="py-2 px-3.5 text-xs sm:text-sm font-medium text-gray-500 hover:text-gray-800 border-b-2 border-transparent transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                            <span>악성 링크/APK 설치 회원용 보안 가이드</span>
+                        </button>
+                    </div>
+
+                    <div class="relative">
+                        <textarea id="victimMsgContent" rows="10" readonly class="w-full bg-slate-50 font-mono text-xs sm:text-sm text-gray-800 p-4 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 leading-relaxed select-all shadow-inner"></textarea>
+                    </div>
+
+                    <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+                        <div class="text-xs text-gray-500 flex items-center gap-1">
+                            <i class="fa-solid fa-circle-info text-emerald-600"></i>
+                            회원에게 전달 시 계좌번호, 금액 등 실제 상황에 맞게 수정하여 발송하십시오.
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <a id="victimSmsDirectBtn" href="sms:?body=" class="bg-gray-100 hover:bg-gray-200 active:bg-gray-300 text-gray-800 font-bold px-4 py-2.5 rounded-xl text-xs sm:text-sm transition flex items-center gap-1.5 border border-gray-300">
+                                <i class="fa-solid fa-comment-sms text-emerald-600"></i>
+                                <span>문자(SMS) 앱 열기</span>
+                            </a>
+                            <button onclick="copyVictimMsgText()" class="bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm flex items-center gap-1.5 cursor-pointer">
+                                <i class="fa-regular fa-copy"></i>
+                                <span>가이드 내용 복사하기</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 섹션 5: ❓ 피해 회원이 가장 궁금해하는 핵심 FAQ -->
+            <section class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="border-b border-gray-100 bg-slate-50/80 px-6 py-4 flex items-center gap-3">
+                    <div class="bg-gray-800 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-sm">
+                        <i class="fa-solid fa-circle-question"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-lg sm:text-xl font-bold text-gray-900">피해 회원 자주 묻는 질문 (FAQ)</h2>
+                        <p class="text-xs text-gray-500">물품 사기 시 지급정지 적용 여부, 계좌 잔액 부족 시 민사 구제 절차 안내</p>
+                    </div>
+                </div>
+
+                <div class="p-6 space-y-4 text-sm">
+                    <div class="border border-gray-200 rounded-xl p-4 bg-slate-50/50">
+                        <h4 class="font-bold text-gray-900 mb-1 flex items-center gap-2">
+                            <span class="text-emerald-600 font-black">Q.</span>
+                            단순 직거래/중고물품 사기인데도 통신사기피해환급법상 계좌 지급정지가 가능한가요?
+                        </h4>
+                        <p class="text-gray-600 text-xs sm:text-sm leading-relaxed pl-5">
+                            원칙적으로 개인 간 단순 물품 거래 사기는 형법상 사기죄로 분류되어 보이스피싱처럼 즉각적인 법정 지급정지가 제한될 수 있습니다. 
+                            그러나 본 사건은 <strong>'네이버 밴드 해킹 및 방장 사칭 메신저 피싱'</strong>이 결합된 중대 사이버 금융 범죄이므로, 경찰 접수 시 메신저 피싱 범죄임을 강력히 주장하고 은행에 착오송금 반환지원 제도(예금보험공사) 또는 금융사기 예방 계좌 동결 협조를 요청해야 합니다.
+                        </p>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-xl p-4 bg-slate-50/50">
+                        <h4 class="font-bold text-gray-900 mb-1 flex items-center gap-2">
+                            <span class="text-emerald-600 font-black">Q.</span>
+                            사기범이 이미 돈을 인출하여 계좌에 잔액이 없다면 어떻게 돈을 돌려받나요?
+                        </h4>
+                        <p class="text-gray-600 text-xs sm:text-sm leading-relaxed pl-5">
+                            계좌 잔액이 0원이면 금융감독원 채권소멸 환급 제도로는 환급받을 수 없습니다. 
+                            이 경우 경찰 수사로 범인(또는 대포통장 명의자)이 특정된 후, 형사 재판 과정에서 <strong>「형사 배상명령신청」</strong>을 법원에 제출하거나, 대포통장 명의인을 상대로 <strong>대한법률구조공단(국번없이 132)</strong>의 도움을 받아 민사상 '불법행위로 인한 손해배상청구' 또는 소액사건심판을 청구하여 강제집행(급여/통장 압류)을 진행해야 합니다.
+                        </p>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-xl p-4 bg-slate-50/50">
+                        <h4 class="font-bold text-gray-900 mb-1 flex items-center gap-2">
+                            <span class="text-emerald-600 font-black">Q.</span>
+                            토스나 카카오페이 등 간편송금으로 돈을 보냈을 때는 어떻게 하나요?
+                        </h4>
+                        <p class="text-gray-600 text-xs sm:text-sm leading-relaxed pl-5">
+                            간편송금으로 계좌번호를 지정해 보낸 경우, 카카오페이/토스 고객센터에 즉시 사기 피해를 접수하고 수취 금융기관의 계좌번호 및 거래확인증을 교부받아 동일하게 해당 은행에 사기계좌 지급정지를 요청하십시오. 
+                            토스의 경우 자체 <strong>'안심보상제'</strong> 대상 여부를 고객센터에 문의하여 구제 가능성을 확인하시기 바랍니다.
+                        </p>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-xl p-4 bg-slate-50/50">
+                        <h4 class="font-bold text-gray-900 mb-1 flex items-center gap-2">
+                            <span class="text-emerald-600 font-black">Q.</span>
+                            피해를 당한 회원들이 함께 공동 고소하면 수사가 더 빨라지나요?
+                        </h4>
+                        <p class="text-gray-600 text-xs sm:text-sm leading-relaxed pl-5">
+                            네, 맞습니다! 개별 사건으로는 소액 사기로 분류될 수 있으나, 동일한 밴드(코스트코 반품마켓 학익점, 다락방, OCS)와 동일 피의자('이상철', '전시숙' 등) 명의의 계좌로 입금한 피해자들이 증거를 모아 경찰청 사이버범죄수사대에 <strong>'병합 수사'</strong>를 요청하면 사건의 중대성이 인정되어 신속한 영장 발부와 계좌 동결이 이루어집니다.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
 
     <footer class="bg-gray-100 border-t border-gray-200 mt-12 py-6 text-center text-xs text-gray-500">
@@ -871,33 +1440,41 @@
             const tabRescue = document.getElementById('tabRescue');
             const tabCatch = document.getElementById('tabCatch');
             const tabCases = document.getElementById('tabCases');
+            const tabVictims = document.getElementById('tabVictims');
 
             const btnRescue = document.getElementById('tabBtnRescue');
             const btnCatch = document.getElementById('tabBtnCatch');
             const btnCases = document.getElementById('tabBtnCases');
+            const btnVictims = document.getElementById('tabBtnVictims');
 
             // Reset all tabs to hidden
             tabRescue.classList.add('hidden');
             tabCatch.classList.add('hidden');
             tabCases.classList.add('hidden');
+            if (tabVictims) tabVictims.classList.add('hidden');
 
             // Inactive button style
-            const inactiveClass = "py-3 px-4 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all text-gray-600 hover:text-gray-900 hover:bg-gray-100 cursor-pointer";
+            const inactiveClass = "py-3 px-2 sm:px-4 rounded-xl font-bold text-xs sm:text-sm md:text-base flex items-center justify-center gap-1.5 sm:gap-2 transition-all text-gray-600 hover:text-gray-900 hover:bg-gray-100 cursor-pointer";
             btnRescue.className = inactiveClass;
             btnCatch.className = inactiveClass;
             btnCases.className = inactiveClass;
+            if (btnVictims) btnVictims.className = inactiveClass;
 
             if (tab === 'catch') {
                 tabCatch.classList.remove('hidden');
-                btnCatch.className = "py-3 px-4 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all shadow-xs bg-indigo-600 text-white cursor-pointer";
+                btnCatch.className = "py-3 px-2 sm:px-4 rounded-xl font-bold text-xs sm:text-sm md:text-base flex items-center justify-center gap-1.5 sm:gap-2 transition-all shadow-xs bg-indigo-600 text-white cursor-pointer";
                 window.location.hash = 'catch';
             } else if (tab === 'cases') {
                 tabCases.classList.remove('hidden');
-                btnCases.className = "py-3 px-4 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all shadow-xs bg-amber-600 text-white cursor-pointer";
+                btnCases.className = "py-3 px-2 sm:px-4 rounded-xl font-bold text-xs sm:text-sm md:text-base flex items-center justify-center gap-1.5 sm:gap-2 transition-all shadow-xs bg-amber-600 text-white cursor-pointer";
                 window.location.hash = 'cases';
+            } else if (tab === 'victims') {
+                if (tabVictims) tabVictims.classList.remove('hidden');
+                if (btnVictims) btnVictims.className = "py-3 px-2 sm:px-4 rounded-xl font-bold text-xs sm:text-sm md:text-base flex items-center justify-center gap-1.5 sm:gap-2 transition-all shadow-xs bg-emerald-600 text-white cursor-pointer";
+                window.location.hash = 'victims';
             } else {
                 tabRescue.classList.remove('hidden');
-                btnRescue.className = "py-3 px-4 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all shadow-xs bg-red-600 text-white cursor-pointer";
+                btnRescue.className = "py-3 px-2 sm:px-4 rounded-xl font-bold text-xs sm:text-sm md:text-base flex items-center justify-center gap-1.5 sm:gap-2 transition-all shadow-xs bg-red-600 text-white cursor-pointer";
                 window.location.hash = 'rescue';
             }
         }
@@ -909,10 +1486,13 @@
                 switchTab('catch');
             } else if (hash === '#cases') {
                 switchTab('cases');
+            } else if (hash === '#victims') {
+                switchTab('victims');
             } else {
                 switchTab('rescue');
             }
             selectMsgTemplate('kakao');
+            selectVictimMsgTemplate('transfer');
         });
 
         const warningTemplates = {
@@ -1123,6 +1703,120 @@
         function triggerPrint() {
             updatePrintFields();
             window.print();
+        }
+
+        // ==================== 피해 회원용 탭 기능 ====================
+        function filterBanks() {
+            const query = (document.getElementById('bankSearchInput')?.value || '').toLowerCase().trim();
+            const bankCards = document.querySelectorAll('.bank-card');
+            bankCards.forEach(card => {
+                const name = (card.getAttribute('data-bank-name') || '').toLowerCase();
+                const tel = card.getAttribute('data-bank-tel') || '';
+                if (!query || name.includes(query) || tel.includes(query)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        const victimTemplates = {
+            transfer: `🚨 [긴급 안내] 밴드 사기 피해 송금 관련 계좌 지급정지 절차 안내
+
+회원님, 밴드 해킹 및 방장 사칭범(이상철, 전시숙)에게 속아 송금하신 사실을 확인했습니다.
+골든타임(송금 후 10분~30분)이 매우 중요하므로 지금 즉시 아래 조치를 취해주십시오!
+
+1. [즉시 계좌 지급정지 전화]
+• 돈을 보내신 사기범 계좌 개설 은행 고객센터(또는 112)로 즉시 전화하십시오.
+• 상담원에게 "네이버 밴드 해킹 사칭 사기로 방금 송금했으니 해당 사기이용계좌를 긴급 지급정지해 주십시오"라고 요청하십시오.
+
+2. [이체확인증 발급]
+• 송금하신 본인 은행 앱에서 '이체확인증'을 다운로드하거나 캡처하십시오. (송금자, 수취은행, 계좌번호, 수취인 이름 필수 명시)
+
+3. [경찰서 방문 및 확인원 발급]
+• 신분증과 이체확인증, 밴드 사기 게시글 캡처를 지참하여 관할 경찰서(사이버수사팀)를 방문해 사건을 접수하고 「사건사고사실확인원」을 발급받으십시오.
+
+4. [3영업일 내 은행 서면 제출]
+• 경찰서에서 발급받은 확인원을 지급정지 요청한 은행 지점에 제출하셔야 지급정지가 유지되고 금감원을 통해 피해환급 절차가 진행됩니다.
+
+현재 저 역시 방장 계정 탈취 건으로 네이버 고객센터와 경찰청에 정식 고소장을 접수하고 강력히 수사 요청 중입니다. 필요한 증빙 자료가 있으시면 언제든 말씀해 주십시오.`,
+
+            phishing: `🚨 [긴급 안내] 외부 링크 클릭 및 악성앱(.apk) 설치 시 스마트폰 긴급 보안 조치
+
+회원님, 해커가 올린 외부 링크를 클릭했거나 앱을 설치하셨다면 스마트폰 해킹 및 개인정보 탈취 위험이 있습니다. 지금 즉시 아래 조치를 실행해 주십시오!
+
+1. [비행기 탑승 모드 즉시 켜기]
+• 스마트폰의 '비행기 탑승 모드'를 켜서 인터넷과 데이터를 즉시 차단하십시오. (원격제어 및 금융인증서 탈취 차단)
+
+2. [경찰청 '시티즌코난' 앱 검사]
+• 경찰청 공인 악성앱 탐지기인 '시티즌코난'(또는 V3 Mobile)을 실행하여 악성 앱을 즉시 삭제하십시오.
+
+3. [전 계좌 일괄 지급정지 신청]
+• 금융결제원 '어카운트인포(payinfo.or.kr)'에 접속하여 [본인계좌 일괄지급정지]를 신청하십시오.
+
+4. [신규 폰 개통 차단]
+• 엠세이퍼(msafer.or.kr)에서 타인이 회원님 명의로 알뜰폰을 무단 개통하지 못하도록 가입제한을 설정하십시오.
+
+5. [통신사 소액결제 차단]
+• 통신사(SKT/KT/LGU+) 고객센터에 전화하여 소액결제 및 콘텐츠이용료 한도를 0원으로 변경하십시오.`
+        };
+
+        let currentVictimMsgType = 'transfer';
+
+        function selectVictimMsgTemplate(type) {
+            currentVictimMsgType = type;
+            const textarea = document.getElementById('victimMsgContent');
+            if (textarea && victimTemplates[type]) {
+                textarea.value = victimTemplates[type];
+            }
+
+            const btnTransfer = document.getElementById('victimTabBtnTransfer');
+            const btnPhishing = document.getElementById('victimTabBtnPhishing');
+
+            const activeClass = "py-2 px-3.5 text-xs sm:text-sm font-bold border-b-2 border-emerald-600 text-emerald-900 transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap";
+            const inactiveClass = "py-2 px-3.5 text-xs sm:text-sm font-medium text-gray-500 hover:text-gray-800 border-b-2 border-transparent transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap";
+
+            if (btnTransfer) btnTransfer.className = (type === 'transfer') ? activeClass : inactiveClass;
+            if (btnPhishing) btnPhishing.className = (type === 'phishing') ? activeClass : inactiveClass;
+
+            const smsBtn = document.getElementById('victimSmsDirectBtn');
+            if (smsBtn && victimTemplates[type]) {
+                smsBtn.href = "sms:?body=" + encodeURIComponent(victimTemplates[type]);
+            }
+        }
+
+        async function copyVictimMsgText() {
+            const textarea = document.getElementById('victimMsgContent');
+            if (!textarea) return;
+            const textToCopy = textarea.value;
+            
+            let success = false;
+            if (navigator.clipboard && window.isSecureContext) {
+                try {
+                    await navigator.clipboard.writeText(textToCopy);
+                    success = true;
+                } catch (err) {
+                    console.warn('Clipboard API failed, falling back to execCommand:', err);
+                }
+            }
+
+            if (!success) {
+                textarea.select();
+                textarea.setSelectionRange(0, 99999);
+                try {
+                    document.execCommand('copy');
+                    success = true;
+                } catch (err) {
+                    console.error('execCommand copy failed:', err);
+                }
+            }
+
+            if (success) {
+                const label = (currentVictimMsgType === 'transfer') ? "사기 송금 회원용 안내문" : "스마트폰 보안 점검 안내문";
+                showToast(`${label}이 클립보드에 복사되었습니다!`);
+            } else {
+                alert('복사하지 못했습니다. 내용을 직접 선택하여 복사해 주세요.');
+            }
         }
     </script>
 
