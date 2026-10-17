@@ -267,6 +267,48 @@
                         </div>
                     </div>
                     
+                    <!-- 밴드 회원 대상 비상 경고 문자/카카오톡 템플릿 복사기 -->
+                    <div class="mt-6 bg-amber-50/70 border-2 border-amber-300/80 rounded-2xl p-5 sm:p-6 shadow-sm">
+                        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                            <div>
+                                <span class="bg-amber-600 text-white text-xs font-bold px-2.5 py-0.5 rounded-full inline-flex items-center gap-1 mb-1">
+                                    <i class="fa-solid fa-bullhorn"></i> 2차 금전사기 차단용
+                                </span>
+                                <h3 class="font-bold text-gray-900 text-base sm:text-lg flex items-center gap-2">
+                                    밴드 회원 대상 「비상 경고 문자/카카오톡 템플릿 복사기」
+                                </h3>
+                                <p class="text-xs text-gray-600 mt-0.5">회원들이 가짜 방장에게 속아 돈을 입금하거나 악성 링크를 누르지 않도록 즉시 전파하십시오.</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button id="copyMsgBtn" onclick="copyMemberWarningText()" class="bg-amber-600 hover:bg-amber-700 active:bg-amber-800 text-white text-xs sm:text-sm font-semibold py-2 px-4 rounded-xl transition-all shadow-sm flex items-center gap-2 cursor-pointer">
+                                    <i class="fa-regular fa-copy"></i> 선택한 템플릿 복사
+                                </button>
+                                <a id="smsDirectBtn" href="sms:?body=" class="hidden sm:inline-flex bg-white hover:bg-gray-50 border border-gray-300 text-gray-700 text-xs sm:text-sm font-semibold py-2 px-3.5 rounded-xl transition-all shadow-2xs items-center gap-1.5">
+                                    <i class="fa-solid fa-comment-sms text-amber-600"></i> 문자 전송
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 템플릿 서브 탭 선택 -->
+                        <div class="flex border-b border-amber-200/80 mb-3 gap-1 sm:gap-2 overflow-x-auto pb-1">
+                            <button id="msgTabBtnKakao" onclick="selectMsgTemplate('kakao')" class="py-2 px-3.5 text-xs sm:text-sm font-bold border-b-2 border-amber-600 text-amber-900 transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap">
+                                <i class="fa-solid fa-comment text-amber-500"></i> 카카오톡 단체방용 (상세형)
+                            </button>
+                            <button id="msgTabBtnSms" onclick="selectMsgTemplate('sms')" class="py-2 px-3.5 text-xs sm:text-sm font-medium text-gray-500 hover:text-gray-800 border-b-2 border-transparent transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap">
+                                <i class="fa-solid fa-envelope text-gray-400"></i> 문자메시지 SMS/LMS용 (간결형)
+                            </button>
+                            <button id="msgTabBtnShort" onclick="selectMsgTemplate('short')" class="py-2 px-3.5 text-xs sm:text-sm font-medium text-gray-500 hover:text-gray-800 border-b-2 border-transparent transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap">
+                                <i class="fa-solid fa-bell text-gray-400"></i> SNS/상태메시지용 (한줄형)
+                            </button>
+                        </div>
+
+                        <!-- 텍스트 영역 -->
+                        <div class="relative">
+                            <textarea id="memberWarningContent" class="w-full h-56 p-4 border border-amber-300/80 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 text-xs sm:text-sm font-sans text-gray-800 leading-relaxed resize-none bg-white shadow-inner" readonly></textarea>
+                            <span class="absolute bottom-3 right-3 text-2xs text-gray-400 bg-white/90 px-2 py-0.5 rounded border border-gray-200 pointer-events-none">원클릭 복사 지원</span>
+                        </div>
+                    </div>
+
                     <div class="mt-6 bg-blue-50/70 p-4 rounded-xl flex gap-3 items-start border border-blue-100">
                         <i class="fa-solid fa-lightbulb text-blue-600 mt-1"></i>
                         <p class="text-xs sm:text-sm text-gray-700 leading-relaxed">
@@ -834,7 +876,93 @@
             } else {
                 switchTab('rescue');
             }
+            selectMsgTemplate('kakao');
         });
+
+        const warningTemplates = {
+            kakao: `🚨 [긴급 비상 공지] 네이버 밴드 해킹 및 방장 권한 탈취 안내 (입금/링크 클릭 절대 금지)
+
+안녕하세요, 회원 여러분.
+현재 제가 운영 중인 네이버 밴드의 관리자(방장) 계정이 해킹당하여 강제로 리더 권한을 탈취당하고 강제 퇴장 조치되었습니다.
+
+⚠️ [피해 밴드 및 가짜 방장 정보]
+• 피해 밴드: 코스트코 반품마켓 학익점 방, 다락방, OCS모임방
+• 현재 밴드에 표시된 가짜 방장: 이상철, 전시숙 (해커)
+
+⚠️ [회원 여러분 필수 주의사항]
+1. 밴드에 올라오는 '파격 할인', '긴급 세일', '공동구매 입금 안내' 등 어떤 금전 요구에도 절대 입금하지 마십시오.
+2. 방장 명의로 올라오는 게시글, 댓글, 1:1 대화의 외부 링크나 첨부파일(.apk)을 절대 클릭하지 마십시오.
+3. 현재 네이버 본사 및 경찰청 사이버수사팀에 정식 신고 및 계정 복구 절차를 진행 중입니다.
+
+리더 권한 복구가 완료되는 대로 다시 정식 공지드리겠습니다. 주변 회원분들께도 널리 알려 2차 피해를 막아주시기 바랍니다. 감사합니다.`,
+
+            sms: `[긴급공지-밴드해킹주의]
+안녕하세요. 밴드 방장입니다.
+현재 '코스트코 반품마켓 학익점 방/다락방/OCS모임방' 방장 계정이 해킹되어 리더 권한을 강탈당했습니다.
+현재 방장으로 등록된 '이상철, 전시숙'은 해커이며, 밴드에 올라오는 특가 세일, 계좌 입금 요구, 외부 링크 클릭에 절대 응하지 마십시오!
+현재 경찰 및 네이버 고객센터에 긴급 복구 접수 중입니다. 사기 피해에 각별히 유의 바랍니다.`,
+
+            short: `🚨[긴급] 밴드(코스트코 반품마켓 학익점/다락방/OCS) 해킹당함! 방장 '이상철, 전시숙' 사칭 금전요구·링크클릭 절대금지! 복구 중입니다.`
+        };
+
+        let currentMsgType = 'kakao';
+
+        function selectMsgTemplate(type) {
+            currentMsgType = type;
+            const textarea = document.getElementById('memberWarningContent');
+            if (textarea && warningTemplates[type]) {
+                textarea.value = warningTemplates[type];
+            }
+
+            const btnKakao = document.getElementById('msgTabBtnKakao');
+            const btnSms = document.getElementById('msgTabBtnSms');
+            const btnShort = document.getElementById('msgTabBtnShort');
+
+            const activeClass = "py-2 px-3.5 text-xs sm:text-sm font-bold border-b-2 border-amber-600 text-amber-900 transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap";
+            const inactiveClass = "py-2 px-3.5 text-xs sm:text-sm font-medium text-gray-500 hover:text-gray-800 border-b-2 border-transparent transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap";
+
+            if (btnKakao) btnKakao.className = (type === 'kakao') ? activeClass : inactiveClass;
+            if (btnSms) btnSms.className = (type === 'sms') ? activeClass : inactiveClass;
+            if (btnShort) btnShort.className = (type === 'short') ? activeClass : inactiveClass;
+
+            const smsBtn = document.getElementById('smsDirectBtn');
+            if (smsBtn && warningTemplates[type]) {
+                smsBtn.href = "sms:?body=" + encodeURIComponent(warningTemplates[type]);
+            }
+        }
+
+        async function copyMemberWarningText() {
+            const textarea = document.getElementById('memberWarningContent');
+            const textToCopy = textarea.value;
+            
+            let success = false;
+            if (navigator.clipboard && window.isSecureContext) {
+                try {
+                    await navigator.clipboard.writeText(textToCopy);
+                    success = true;
+                } catch (err) {
+                    console.warn('Clipboard API failed, falling back to execCommand:', err);
+                }
+            }
+
+            if (!success) {
+                textarea.select();
+                textarea.setSelectionRange(0, 99999);
+                try {
+                    document.execCommand('copy');
+                    success = true;
+                } catch (err) {
+                    console.error('execCommand copy failed:', err);
+                }
+            }
+
+            if (success) {
+                const label = (currentMsgType === 'kakao') ? "카카오톡 단체방용 공지문" : (currentMsgType === 'sms') ? "문자메시지용 공지문" : "한 줄 상태메시지";
+                showToast(`${label}이 클립보드에 복사되었습니다!`);
+            } else {
+                alert('복사하지 못했습니다. 내용을 직접 선택하여 복사해 주세요.');
+            }
+        }
 
         async function copyReportText() {
             const textarea = document.getElementById('reportContent');
