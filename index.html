@@ -96,23 +96,31 @@
 
     <main class="max-w-5xl mx-auto px-4 py-8 sm:px-6 lg:px-8 flex-1 w-full">
         
-        <!-- 상단 4개 탭 네비게이션 -->
-        <nav class="grid grid-cols-2 lg:grid-cols-4 border border-gray-200/90 mb-8 bg-white p-1.5 rounded-2xl shadow-sm gap-2" aria-label="메인 탭">
-            <button id="tabBtnRescue" onclick="switchTab('rescue')" class="py-3 px-2 sm:px-4 rounded-xl font-bold text-xs sm:text-sm md:text-base flex items-center justify-center gap-1.5 sm:gap-2 transition-all shadow-xs bg-red-600 text-white cursor-pointer">
+        <!-- 상단 6개 탭 네비게이션 -->
+        <nav class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 border border-gray-200/90 mb-8 bg-white p-1.5 rounded-2xl shadow-sm gap-2" aria-label="메인 탭">
+            <button id="tabBtnRescue" onclick="switchTab('rescue')" class="py-3 px-2 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all shadow-xs bg-red-600 text-white cursor-pointer">
                 <i class="fa-solid fa-shield-halved"></i>
                 <span>🚨 긴급 피해 복구</span>
             </button>
-            <button id="tabBtnCatch" onclick="switchTab('catch')" class="py-3 px-2 sm:px-4 rounded-xl font-bold text-xs sm:text-sm md:text-base flex items-center justify-center gap-1.5 sm:gap-2 transition-all text-gray-600 hover:text-gray-900 hover:bg-gray-100 cursor-pointer">
+            <button id="tabBtnCatch" onclick="switchTab('catch')" class="py-3 px-2 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all text-gray-600 hover:text-gray-900 hover:bg-gray-100 cursor-pointer">
                 <i class="fa-solid fa-user-secret text-indigo-600"></i>
                 <span>🕵️‍♂️ 해커 잡는 방법</span>
             </button>
-            <button id="tabBtnCases" onclick="switchTab('cases')" class="py-3 px-2 sm:px-4 rounded-xl font-bold text-xs sm:text-sm md:text-base flex items-center justify-center gap-1.5 sm:gap-2 transition-all text-gray-600 hover:text-gray-900 hover:bg-gray-100 cursor-pointer">
+            <button id="tabBtnCases" onclick="switchTab('cases')" class="py-3 px-2 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all text-gray-600 hover:text-gray-900 hover:bg-gray-100 cursor-pointer">
                 <i class="fa-solid fa-book-skull text-amber-600"></i>
                 <span>📂 유사 해킹 사례</span>
             </button>
-            <button id="tabBtnVictims" onclick="switchTab('victims')" class="py-3 px-2 sm:px-4 rounded-xl font-bold text-xs sm:text-sm md:text-base flex items-center justify-center gap-1.5 sm:gap-2 transition-all text-gray-600 hover:text-gray-900 hover:bg-gray-100 cursor-pointer">
+            <button id="tabBtnVictims" onclick="switchTab('victims')" class="py-3 px-2 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all text-gray-600 hover:text-gray-900 hover:bg-gray-100 cursor-pointer">
                 <i class="fa-solid fa-hand-holding-dollar text-emerald-600"></i>
                 <span>👥 피해 회원용 (지급정지)</span>
+            </button>
+            <button id="tabBtnCard" onclick="switchTab('card')" class="py-3 px-2 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all text-gray-600 hover:text-gray-900 hover:bg-gray-100 cursor-pointer">
+                <i class="fa-solid fa-image text-rose-600"></i>
+                <span>🖼️ 단체방 배포용</span>
+            </button>
+            <button id="tabBtnCheck" onclick="switchTab('check')" class="py-3 px-2 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all text-gray-600 hover:text-gray-900 hover:bg-gray-100 cursor-pointer">
+                <i class="fa-solid fa-magnifying-glass-dollar text-cyan-600"></i>
+                <span>🔍 사기 계좌·번호 조회</span>
             </button>
         </nav>
 
@@ -1419,6 +1427,396 @@
                 </div>
             </section>
         </div>
+
+        <!-- 탭 5: 카톡·밴드 단체방 배포용 비상 경고 카드뉴스 이미지 생성기 -->
+        <div id="tabCard" class="hidden space-y-8">
+            <!-- 헤더 배너 -->
+            <div class="bg-gradient-to-r from-rose-600 via-pink-700 to-red-800 text-white rounded-2xl p-6 sm:p-8 shadow-md">
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                    <div class="space-y-2">
+                        <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-xs px-3 py-1 rounded-full text-xs font-semibold tracking-wide">
+                            <i class="fa-solid fa-bullhorn text-amber-300"></i>
+                            시각적 경고로 2차 금전 피해 100% 예방
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-black tracking-tight">🖼️ 카톡·밴드 단체방 배포용 「비상 경고 카드뉴스 이미지 생성기」</h2>
+                        <p class="text-rose-100 text-sm sm:text-base leading-relaxed max-w-2xl">
+                            긴 줄글 공지는 회원들이 그냥 지나칠 수 있습니다. 눈에 번쩍 띄는 <strong>고화질 비상 경고 카드뉴스(1080x1080 PNG)</strong>를 원클릭으로 생성하여 카카오톡 단체방, 인스타그램, 페이스북, 다른 밴드에 즉시 배포하십시오.
+                        </p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row md:flex-col gap-2.5 w-full md:w-auto shrink-0">
+                        <button onclick="downloadCardImage()" class="bg-white text-rose-900 hover:bg-rose-50 px-5 py-3 rounded-xl font-bold text-center text-sm shadow transition flex items-center justify-center gap-2 cursor-pointer">
+                            <i class="fa-solid fa-download text-rose-600"></i>
+                            <span>고화질 카드뉴스 다운로드 (PNG)</span>
+                        </button>
+                        <button onclick="copyCardImageToClipboard()" class="bg-rose-900/60 hover:bg-rose-900/80 text-white border border-white/30 px-5 py-2.5 rounded-xl font-bold text-center text-xs transition flex items-center justify-center gap-2 cursor-pointer">
+                            <i class="fa-regular fa-copy"></i>
+                            <span>이미지 클립보드 복사</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 메인 에디터 & 캔버스 미리보기 그리드 -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- 좌측: 카드뉴스 커스텀 설정 폼 (5 cols) -->
+                <div class="lg:col-span-5 bg-white rounded-2xl shadow-sm border border-gray-200 p-6 space-y-5">
+                    <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+                        <h3 class="font-bold text-gray-900 text-base flex items-center gap-2">
+                            <i class="fa-solid fa-sliders text-rose-600"></i>
+                            카드뉴스 문구 & 디자인 설정
+                        </h3>
+                        <button onclick="resetCardForm()" class="text-xs text-gray-500 hover:text-rose-600 font-medium cursor-pointer">
+                            <i class="fa-solid fa-rotate-left mr-1"></i>기본값 복원
+                        </button>
+                    </div>
+
+                    <!-- 테마 선택 -->
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold text-gray-700">🎨 디자인 테마 선택</label>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button type="button" onclick="setCardTheme('red')" id="themeBtnRed" class="py-2 px-2 rounded-xl text-xs font-bold border-2 border-red-500 bg-red-50 text-red-700 flex flex-col items-center gap-1 cursor-pointer transition">
+                                <span class="w-3.5 h-3.5 rounded-full bg-red-600"></span>
+                                <span>초비상 레드</span>
+                            </button>
+                            <button type="button" onclick="setCardTheme('yellow')" id="themeBtnYellow" class="py-2 px-2 rounded-xl text-xs font-bold border-2 border-gray-200 text-gray-700 flex flex-col items-center gap-1 cursor-pointer transition">
+                                <span class="w-3.5 h-3.5 rounded-full bg-amber-500"></span>
+                                <span>주의 옐로우</span>
+                            </button>
+                            <button type="button" onclick="setCardTheme('dark')" id="themeBtnDark" class="py-2 px-2 rounded-xl text-xs font-bold border-2 border-gray-200 text-gray-700 flex flex-col items-center gap-1 cursor-pointer transition">
+                                <span class="w-3.5 h-3.5 rounded-full bg-slate-900"></span>
+                                <span>경찰수사 다크</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 밴드명 입력 & 빠른 버튼 -->
+                    <div class="space-y-2">
+                        <label for="cardBandName" class="block text-xs font-bold text-gray-700">📌 피해 밴드명</label>
+                        <input type="text" id="cardBandName" oninput="drawCardNews()" value="코스트코 반품마켓 학익점 방 (다락방, OCS)" class="w-full text-xs sm:text-sm p-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-500">
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <button type="button" onclick="quickSetBand('코스트코 반품마켓 학익점 방')" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-2 py-1 rounded-md cursor-pointer">코스트코 반품마켓</button>
+                            <button type="button" onclick="quickSetBand('다락방')" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-2 py-1 rounded-md cursor-pointer">다락방</button>
+                            <button type="button" onclick="quickSetBand('OCS모임방')" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-2 py-1 rounded-md cursor-pointer">OCS모임방</button>
+                            <button type="button" onclick="quickSetBand('코스트코 반품마켓 학익점, 다락방, OCS (3곳 전체)')" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-2 py-1 rounded-md cursor-pointer">전체 3곳</button>
+                        </div>
+                    </div>
+
+                    <!-- 해커(가짜 방장) 이름 -->
+                    <div class="space-y-2">
+                        <label for="cardHackerName" class="block text-xs font-bold text-gray-700">⚠️ 사칭 가짜 방장 (해커 이름)</label>
+                        <input type="text" id="cardHackerName" oninput="drawCardNews()" value="이상철, 전시숙" class="w-full text-xs sm:text-sm p-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-500">
+                    </div>
+
+                    <!-- 3대 핵심 경고 문구 -->
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold text-gray-700">🚨 핵심 경고 항목 3가지</label>
+                        <div class="space-y-2">
+                            <input type="text" id="cardWarning1" oninput="drawCardNews()" value="1. 사기범 계좌 입금 절대 금지 (특가/할인 허위)" class="w-full text-xs p-2 rounded-lg border border-gray-300 focus:ring-1 focus:ring-rose-500">
+                            <input type="text" id="cardWarning2" oninput="drawCardNews()" value="2. 방장 사칭 1:1 대화 및 외부 링크 / APK 클릭 금지" class="w-full text-xs p-2 rounded-lg border border-gray-300 focus:ring-1 focus:ring-rose-500">
+                            <input type="text" id="cardWarning3" oninput="drawCardNews()" value="3. 경찰청 사이버범죄수사팀 정식 고소 접수 완료" class="w-full text-xs p-2 rounded-lg border border-gray-300 focus:ring-1 focus:ring-rose-500">
+                        </div>
+                    </div>
+
+                    <!-- 문의/비상 연락처 -->
+                    <div class="space-y-2">
+                        <label for="cardContact" class="block text-xs font-bold text-gray-700">📞 진짜 방장 비상 문의처 (선택 사항)</label>
+                        <input type="text" id="cardContact" oninput="drawCardNews()" value="비상 문의: 진짜 방장에게 전화/문자로 별도 확인 바랍니다" placeholder="예: 010-0000-0000 또는 카톡ID: xxx" class="w-full text-xs sm:text-sm p-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-500">
+                    </div>
+
+                    <!-- 하단 버튼들 -->
+                    <div class="pt-3 border-t border-gray-100 flex flex-col gap-2">
+                        <button onclick="downloadCardImage()" class="w-full bg-rose-600 hover:bg-rose-700 active:bg-rose-800 text-white font-bold py-3 px-4 rounded-xl text-sm transition shadow-sm flex items-center justify-center gap-2 cursor-pointer">
+                            <i class="fa-solid fa-file-arrow-down"></i>
+                            <span>1080x1080 고화질 PNG 다운로드</span>
+                        </button>
+                        <button onclick="copyCardImageToClipboard()" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-2.5 px-4 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-2 cursor-pointer">
+                            <i class="fa-regular fa-clipboard text-rose-600"></i>
+                            <span>클립보드에 이미지 복사</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 우측: 실시간 캔버스 미리보기 & 단체방 공유 도구 (7 cols) -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 flex flex-col items-center">
+                        <div class="flex items-center justify-between w-full mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping"></span>
+                                <h3 class="font-bold text-gray-900 text-sm sm:text-base">실시간 카드뉴스 미리보기 (1:1 비율)</h3>
+                            </div>
+                            <span class="text-xs bg-gray-100 text-gray-600 font-mono px-2 py-0.5 rounded">1080 × 1080 px</span>
+                        </div>
+
+                        <!-- 캔버스 컨테이너 (반응형 축소 미리보기) -->
+                        <div class="w-full max-w-[480px] aspect-square rounded-2xl overflow-hidden shadow-lg border border-gray-300 bg-gray-900 flex items-center justify-center relative">
+                            <canvas id="cardCanvas" width="1080" height="1080" class="w-full h-full object-contain cursor-pointer" onclick="downloadCardImage()" title="클릭 시 다운로드"></canvas>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-2 text-center">※ 위 이미지를 클릭하거나 [다운로드] 버튼을 누르면 고화질 원본 파일이 즉시 저장됩니다.</p>
+                    </div>
+
+                    <!-- 단체방 전송용 텍스트 복사기 -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-bold text-gray-900 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-message text-indigo-600"></i>
+                                카드뉴스와 함께 전송할 카톡/문자 설명문
+                            </h4>
+                            <button onclick="copyCardShareText()" class="text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold px-3 py-1.5 rounded-lg transition cursor-pointer flex items-center gap-1">
+                                <i class="fa-regular fa-copy"></i> 설명문 복사
+                            </button>
+                        </div>
+                        <textarea id="cardShareText" rows="4" readonly class="w-full bg-slate-50 font-mono text-xs text-gray-700 p-3 rounded-xl border border-gray-200 focus:outline-none select-all leading-relaxed"></textarea>
+                    </div>
+
+                    <!-- 원클릭 프리셋 카드 갤러리 -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 space-y-3">
+                        <h4 class="font-bold text-gray-900 text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-bolt text-amber-500"></i>
+                            원클릭 상황별 빠른 프리셋 로드
+                        </h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                            <button onclick="loadCardPreset(1)" class="p-3 text-left rounded-xl border border-gray-200 hover:border-rose-400 hover:bg-rose-50/50 transition cursor-pointer">
+                                <strong class="text-xs block text-gray-900 font-bold">🛒 반품마켓 특가사기 경고</strong>
+                                <span class="text-[11px] text-gray-500">코스트코 반품마켓 학익점 맞춤</span>
+                            </button>
+                            <button onclick="loadCardPreset(2)" class="p-3 text-left rounded-xl border border-gray-200 hover:border-rose-400 hover:bg-rose-50/50 transition cursor-pointer">
+                                <strong class="text-xs block text-gray-900 font-bold">⚠️ 모임방 2FA/링크 클릭 경고</strong>
+                                <span class="text-[11px] text-gray-500">다락방 / OCS모임방 맞춤</span>
+                            </button>
+                            <button onclick="loadCardPreset(3)" class="p-3 text-left rounded-xl border border-gray-200 hover:border-rose-400 hover:bg-rose-50/50 transition cursor-pointer">
+                                <strong class="text-xs block text-gray-900 font-bold">👮‍♂️ 경찰청 수사 접수 경고</strong>
+                                <span class="text-[11px] text-gray-500">경찰청 고소 완료 정식 공지</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 탭 6: 사기 계좌·전화번호 실시간 이력 조회기 (경찰청 사이버캅 & 더치트 연동) -->
+        <div id="tabCheck" class="hidden space-y-8">
+            <!-- 헤더 배너 -->
+            <div class="bg-gradient-to-r from-cyan-700 via-teal-800 to-slate-900 text-white rounded-2xl p-6 sm:p-8 shadow-md">
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                    <div class="space-y-2">
+                        <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-xs px-3 py-1 rounded-full text-xs font-semibold tracking-wide">
+                            <i class="fa-solid fa-shield-halved text-cyan-300"></i>
+                            경찰청 사이버캅 & 더치트(TheCheat) 공식 연동
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-black tracking-tight">🔍 사기 계좌·전화번호 실시간 이력 조회기</h2>
+                        <p class="text-cyan-100 text-sm sm:text-base leading-relaxed max-w-2xl">
+                            사기범(해커 '이상철', '전시숙' 등)이 밴드 공지나 1:1 대화에서 제시한 입금 계좌번호 또는 연락처가 과거 다른 인터넷 사기·보이스피싱 사건에 신고된 대포통장인지 실시간으로 조회하고 경찰 증거로 확보하십시오.
+                        </p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row md:flex-col gap-2.5 w-full md:w-auto shrink-0">
+                        <a href="https://cyberbureau.police.go.kr/" target="_blank" rel="noopener noreferrer" class="bg-white text-cyan-950 hover:bg-cyan-50 px-5 py-3 rounded-xl font-bold text-center text-sm shadow transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-building-shield text-blue-600"></i>
+                            <span>경찰청 사이버수사국 바로가기</span>
+                        </a>
+                        <a href="https://thecheat.co.kr/" target="_blank" rel="noopener noreferrer" class="bg-cyan-900/60 hover:bg-cyan-900/80 text-white border border-white/30 px-5 py-2.5 rounded-xl font-bold text-center text-xs transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-database text-amber-300"></i>
+                            <span>더치트(TheCheat) 바로가기</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 실시간 조회 입력 카드 -->
+            <section class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="border-b border-gray-100 bg-slate-50/80 px-6 py-4 flex items-center gap-3">
+                    <div class="bg-cyan-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-sm">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900">사기 의심 계좌번호 / 전화번호 원스톱 실시간 조회</h3>
+                        <p class="text-xs text-gray-500">입력하신 번호로 경찰청 사이버캅 및 더치트 사기 피해 DB를 즉시 검색합니다.</p>
+                    </div>
+                </div>
+
+                <div class="p-6 space-y-6">
+                    <!-- 조회 대상 선택 탭 -->
+                    <div class="flex items-center gap-3 border-b border-gray-200 pb-3">
+                        <button type="button" id="searchTypeAccountBtn" onclick="setSearchType('account')" class="py-2 px-4 rounded-xl font-bold text-xs sm:text-sm bg-cyan-600 text-white shadow-xs transition flex items-center gap-1.5 cursor-pointer">
+                            <i class="fa-solid fa-credit-card"></i>
+                            <span>계좌번호 조회</span>
+                        </button>
+                        <button type="button" id="searchTypePhoneBtn" onclick="setSearchType('phone')" class="py-2 px-4 rounded-xl font-medium text-xs sm:text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition flex items-center gap-1.5 cursor-pointer">
+                            <i class="fa-solid fa-mobile-screen"></i>
+                            <span>전화번호 / 연락처 조회</span>
+                        </button>
+                    </div>
+
+                    <!-- 입력 필드 -->
+                    <div class="space-y-3">
+                        <label id="searchTargetLabel" class="block text-xs font-bold text-gray-700">💳 사기 의심 계좌번호 입력 (하이픈 '-' 없이 숫자만 입력 가능)</label>
+                        <div class="flex flex-col sm:flex-row gap-2">
+                            <div class="relative flex-1">
+                                <input type="text" id="fraudSearchInput" placeholder="예: 3333011234567 (계좌번호 숫자만)" class="w-full text-sm sm:text-base font-mono p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-500 shadow-inner">
+                            </div>
+                            <button onclick="executeFraudSearch('cybercop')" class="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold px-5 py-3 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-1.5 shadow-xs cursor-pointer shrink-0">
+                                <i class="fa-solid fa-building-shield"></i>
+                                <span>경찰청 사이버캅 조회</span>
+                            </button>
+                            <button onclick="executeFraudSearch('thecheat')" class="bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold px-5 py-3 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-1.5 shadow-xs cursor-pointer shrink-0">
+                                <i class="fa-solid fa-magnifying-glass-chart"></i>
+                                <span>더치트(TheCheat) 조회</span>
+                            </button>
+                        </div>
+
+                        <!-- 추천 빠른 선택 버튼 -->
+                        <div class="pt-2 flex flex-wrap items-center gap-2">
+                            <span class="text-xs text-gray-500 font-semibold">💡 본 사건 해커 피의자:</span>
+                            <button type="button" onclick="setSearchValue('이상철')" class="text-xs bg-cyan-50 hover:bg-cyan-100 text-cyan-800 border border-cyan-200 px-2.5 py-1 rounded-lg font-medium cursor-pointer">가짜 방장 '이상철' 명의 계좌 검색</button>
+                            <button type="button" onclick="setSearchValue('전시숙')" class="text-xs bg-cyan-50 hover:bg-cyan-100 text-cyan-800 border border-cyan-200 px-2.5 py-1 rounded-lg font-medium cursor-pointer">가짜 방장 '전시숙' 명의 계좌 검색</button>
+                            <button type="button" onclick="clearSearchInput()" class="text-xs text-gray-400 hover:text-gray-600 ml-auto cursor-pointer">지우기</button>
+                        </div>
+                    </div>
+
+                    <!-- 조회 안내 박스 -->
+                    <div class="bg-cyan-50 border border-cyan-200 rounded-xl p-4 text-xs text-cyan-900 space-y-1.5 leading-relaxed">
+                        <div class="font-bold flex items-center gap-1.5 text-cyan-950">
+                            <i class="fa-solid fa-circle-info text-cyan-600"></i>
+                            실시간 사기 조회 서비스 안내
+                        </div>
+                        <p>• <strong>경찰청 사이버캅:</strong> 최근 3개월간 경찰청에 3회 이상 사기로 신고 접수된 계좌번호 및 전화번호를 무료 조회합니다.</p>
+                        <p>• <strong>더치트 (TheCheat):</strong> 피해자들이 실시간으로 등록한 사기 피해 사례, 카카오톡/밴드 사기 이력, 대포통장 명의인 정보를 통합 조회합니다.</p>
+                        <p>• <strong>금융 앱 자체 사기 탐지:</strong> 토스(Toss) 및 카카오뱅크 송금 화면에서 계좌번호 입력 시 '사기의심 사이렌' 경고가 뜨는지도 반드시 함께 확인하십시오.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. 사기 계좌 발견 시 경찰서 증거 제출 가이드 (증 제5호) -->
+            <section class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="border-b border-gray-100 bg-slate-50/80 px-6 py-4 flex items-center gap-3">
+                    <div class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-sm">
+                        <i class="fa-solid fa-file-shield"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900">사기 이력 확인 시 경찰서 제출용 증거(증 제5호) 캡처 요령</h3>
+                        <p class="text-xs text-gray-500">수사관에게 전문 대포통장 조직임을 입증하여 신속한 계좌 영장 청구를 유도하는 핵심 비법</p>
+                    </div>
+                </div>
+
+                <div class="p-6 space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-red-50/70 border border-red-200 p-4 rounded-xl space-y-2">
+                            <span class="text-xs font-bold bg-red-600 text-white px-2 py-0.5 rounded">필수 캡처 1</span>
+                            <h4 class="font-bold text-gray-900 text-sm">더치트 피해 등록 화면 캡처</h4>
+                            <p class="text-xs text-gray-600 leading-relaxed">
+                                동일 계좌번호로 등록된 피해 건수, 총 피해 금액, 최초 등록 일자가 선명하게 보이도록 전체 화면을 캡처하십시오.
+                            </p>
+                        </div>
+
+                        <div class="bg-amber-50/70 border border-amber-200 p-4 rounded-xl space-y-2">
+                            <span class="text-xs font-bold bg-amber-600 text-white px-2 py-0.5 rounded">필수 캡처 2</span>
+                            <h4 class="font-bold text-gray-900 text-sm">경찰청 사이버캅 신고 이력 캡처</h4>
+                            <p class="text-xs text-gray-600 leading-relaxed">
+                                '최근 3개월 내 3회 이상 사기 의심' 경고 팝업 창을 캡처하여 국가 공적 기관에서도 사기 의심으로 지정되었음을 증명하십시오.
+                            </p>
+                        </div>
+
+                        <div class="bg-blue-50/70 border border-blue-200 p-4 rounded-xl space-y-2">
+                            <span class="text-xs font-bold bg-blue-600 text-white px-2 py-0.5 rounded">필수 캡처 3</span>
+                            <h4 class="font-bold text-gray-900 text-sm">밴드 내 계좌 안내 대화 캡처</h4>
+                            <p class="text-xs text-gray-600 leading-relaxed">
+                                방장 사칭범이 밴드 공지글이나 1:1 채팅으로 해당 계좌번호와 예금주를 직접 전송한 원본 대화 캡처를 일치시켜 제출하십시오.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 border border-gray-300 p-4 rounded-xl text-xs space-y-2">
+                        <h4 class="font-bold text-gray-900 flex items-center gap-1.5">
+                            <i class="fa-solid fa-gavel text-indigo-600"></i>
+                            수사관에게 어필해야 하는 핵심 법적 멘트
+                        </h4>
+                        <p class="text-gray-700 leading-relaxed font-mono bg-white p-3 rounded-lg border border-gray-200 select-all">
+                            "수사관님, 피의자가 안내한 [은행명] [계좌번호] (예금주: [이름])은 더치트 및 경찰청 사이버캅 조회 결과 이미 다수의 피해 신고가 누적된 전형적인 '상습 대포통장'입니다. 추가 피해자가 계속 발생하고 있으므로 신속한 금융계좌 압수수색 검증영장 집행 및 사기이용계좌 지급정지 촉탁을 간곡히 요청드립니다."
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. 대포통장 및 사기범의 전형적인 4대 특징 -->
+            <section class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="border-b border-gray-100 bg-slate-50/80 px-6 py-4 flex items-center gap-3">
+                    <div class="bg-rose-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-sm">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900">네이버 밴드 해킹 사기범들의 대포통장 4대 수법</h3>
+                        <p class="text-xs text-gray-500">회원들이 입금 전 반드시 확인해야 하는 위험 신호</p>
+                    </div>
+                </div>
+
+                <div class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-xl border border-rose-100 bg-rose-50/40 flex items-start gap-3">
+                            <div class="w-7 h-7 rounded-lg bg-rose-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</div>
+                            <div class="space-y-1">
+                                <strong class="text-sm font-bold text-gray-900">매장 상호가 아닌 '개인 명의' 계좌 요구</strong>
+                                <p class="text-xs text-gray-600 leading-relaxed">
+                                    '코스트코 반품마켓 학익점' 같은 공식 매장은 사업자 명의 통장을 사용합니다. 방장이라며 개인 이름('이상철', '전시숙' 등)의 계좌로 입금을 요구하면 100% 사기입니다.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-rose-100 bg-rose-50/40 flex items-start gap-3">
+                            <div class="w-7 h-7 rounded-lg bg-rose-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</div>
+                            <div class="space-y-1">
+                                <strong class="text-sm font-bold text-gray-900">비대면 인터넷은행(케이·카카오·토스) 집중 악용</strong>
+                                <p class="text-xs text-gray-600 leading-relaxed">
+                                    신분증 도용이나 노숙자/알바생 명의로 비대면 개설이 쉬운 인터넷 전문은행 계좌를 주로 대포통장으로 유통합니다.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-rose-100 bg-rose-50/40 flex items-start gap-3">
+                            <div class="w-7 h-7 rounded-lg bg-rose-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</div>
+                            <div class="space-y-1">
+                                <strong class="text-sm font-bold text-gray-900">입금자명 변경 요구 (추적 회피 및 세탁)</strong>
+                                <p class="text-xs text-gray-600 leading-relaxed">
+                                    "입금자명을 [이름+전화번호 뒤 4자리] 또는 [상품코드]로 바꿔서 보내세요"라고 지시하는 경우, 다른 피해자 입금분과 섞어 세탁하려는 전형적인 수법입니다.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-rose-100 bg-rose-50/40 flex items-start gap-3">
+                            <div class="w-7 h-7 rounded-lg bg-rose-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">4</div>
+                            <div class="space-y-1">
+                                <strong class="text-sm font-bold text-gray-900">가짜 네이버페이/안전거래 결제창 링크 전송</strong>
+                                <p class="text-xs text-gray-600 leading-relaxed">
+                                    "네이버 안전결제로 진행합니다"라며 네이버 도메인(`naver.com`)이 아닌 가짜 유사 도메인(예: `naver-pay-safe.com`) 링크를 보내 결제 및 비밀번호를 탈취합니다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. 사기 계좌 신규 등록 및 피해 확산 방지 -->
+            <section class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="border-b border-gray-100 bg-slate-50/80 px-6 py-4 flex items-center gap-3">
+                    <div class="bg-emerald-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-sm">
+                        <i class="fa-solid fa-bullhorn"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900">다른 피해자가 생기지 않도록! 더치트 신규 사기 피해 등록하기</h3>
+                        <p class="text-xs text-gray-500">피해를 입은 회원이 더치트에 계좌를 등록하면 전국 은행 및 중고거래 앱에서 즉시 차단됩니다.</p>
+                    </div>
+                </div>
+
+                <div class="p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="space-y-1 text-xs sm:text-sm text-gray-600">
+                        <p>더치트에 피해 계좌를 등록하면 <strong>토스, 카카오뱅크, 당근마켓, 번개장터</strong> 등 주요 플랫폼에 사기 계좌 경고가 실시간 연동되어 추가 송금을 방지합니다.</p>
+                        <p class="text-emerald-700 font-semibold">※ 10분만 투자하여 피해 등록을 진행하시면 더 큰 범죄 확산을 막을 수 있습니다.</p>
+                    </div>
+                    <a href="https://thecheat.co.kr/rb/?mod=_fraud_regist" target="_blank" rel="noopener noreferrer" class="bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold px-6 py-3 rounded-xl text-xs sm:text-sm transition shadow-sm flex items-center gap-2 shrink-0">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <span>더치트에 사기 피해 등록</span>
+                    </a>
+                </div>
+            </section>
+        </div>
     </main>
 
     <footer class="bg-gray-100 border-t border-gray-200 mt-12 py-6 text-center text-xs text-gray-500">
@@ -1441,40 +1839,57 @@
             const tabCatch = document.getElementById('tabCatch');
             const tabCases = document.getElementById('tabCases');
             const tabVictims = document.getElementById('tabVictims');
+            const tabCard = document.getElementById('tabCard');
+            const tabCheck = document.getElementById('tabCheck');
 
             const btnRescue = document.getElementById('tabBtnRescue');
             const btnCatch = document.getElementById('tabBtnCatch');
             const btnCases = document.getElementById('tabBtnCases');
             const btnVictims = document.getElementById('tabBtnVictims');
+            const btnCard = document.getElementById('tabBtnCard');
+            const btnCheck = document.getElementById('tabBtnCheck');
 
             // Reset all tabs to hidden
             tabRescue.classList.add('hidden');
             tabCatch.classList.add('hidden');
             tabCases.classList.add('hidden');
             if (tabVictims) tabVictims.classList.add('hidden');
+            if (tabCard) tabCard.classList.add('hidden');
+            if (tabCheck) tabCheck.classList.add('hidden');
 
             // Inactive button style
-            const inactiveClass = "py-3 px-2 sm:px-4 rounded-xl font-bold text-xs sm:text-sm md:text-base flex items-center justify-center gap-1.5 sm:gap-2 transition-all text-gray-600 hover:text-gray-900 hover:bg-gray-100 cursor-pointer";
+            const inactiveClass = "py-3 px-2 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all text-gray-600 hover:text-gray-900 hover:bg-gray-100 cursor-pointer";
             btnRescue.className = inactiveClass;
             btnCatch.className = inactiveClass;
             btnCases.className = inactiveClass;
             if (btnVictims) btnVictims.className = inactiveClass;
+            if (btnCard) btnCard.className = inactiveClass;
+            if (btnCheck) btnCheck.className = inactiveClass;
 
             if (tab === 'catch') {
                 tabCatch.classList.remove('hidden');
-                btnCatch.className = "py-3 px-2 sm:px-4 rounded-xl font-bold text-xs sm:text-sm md:text-base flex items-center justify-center gap-1.5 sm:gap-2 transition-all shadow-xs bg-indigo-600 text-white cursor-pointer";
+                btnCatch.className = "py-3 px-2 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all shadow-xs bg-indigo-600 text-white cursor-pointer";
                 window.location.hash = 'catch';
             } else if (tab === 'cases') {
                 tabCases.classList.remove('hidden');
-                btnCases.className = "py-3 px-2 sm:px-4 rounded-xl font-bold text-xs sm:text-sm md:text-base flex items-center justify-center gap-1.5 sm:gap-2 transition-all shadow-xs bg-amber-600 text-white cursor-pointer";
+                btnCases.className = "py-3 px-2 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all shadow-xs bg-amber-600 text-white cursor-pointer";
                 window.location.hash = 'cases';
             } else if (tab === 'victims') {
                 if (tabVictims) tabVictims.classList.remove('hidden');
-                if (btnVictims) btnVictims.className = "py-3 px-2 sm:px-4 rounded-xl font-bold text-xs sm:text-sm md:text-base flex items-center justify-center gap-1.5 sm:gap-2 transition-all shadow-xs bg-emerald-600 text-white cursor-pointer";
+                if (btnVictims) btnVictims.className = "py-3 px-2 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all shadow-xs bg-emerald-600 text-white cursor-pointer";
                 window.location.hash = 'victims';
+            } else if (tab === 'card') {
+                if (tabCard) tabCard.classList.remove('hidden');
+                if (btnCard) btnCard.className = "py-3 px-2 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all shadow-xs bg-rose-600 text-white cursor-pointer";
+                window.location.hash = 'card';
+                setTimeout(drawCardNews, 50);
+            } else if (tab === 'check') {
+                if (tabCheck) tabCheck.classList.remove('hidden');
+                if (btnCheck) btnCheck.className = "py-3 px-2 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all shadow-xs bg-cyan-700 text-white cursor-pointer";
+                window.location.hash = 'check';
             } else {
                 tabRescue.classList.remove('hidden');
-                btnRescue.className = "py-3 px-2 sm:px-4 rounded-xl font-bold text-xs sm:text-sm md:text-base flex items-center justify-center gap-1.5 sm:gap-2 transition-all shadow-xs bg-red-600 text-white cursor-pointer";
+                btnRescue.className = "py-3 px-2 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all shadow-xs bg-red-600 text-white cursor-pointer";
                 window.location.hash = 'rescue';
             }
         }
@@ -1488,11 +1903,17 @@
                 switchTab('cases');
             } else if (hash === '#victims') {
                 switchTab('victims');
+            } else if (hash === '#card') {
+                switchTab('card');
+            } else if (hash === '#check') {
+                switchTab('check');
             } else {
                 switchTab('rescue');
             }
             selectMsgTemplate('kakao');
             selectVictimMsgTemplate('transfer');
+            updateCardShareText();
+            setTimeout(drawCardNews, 100);
         });
 
         const warningTemplates = {
@@ -1816,6 +2237,439 @@
                 showToast(`${label}이 클립보드에 복사되었습니다!`);
             } else {
                 alert('복사하지 못했습니다. 내용을 직접 선택하여 복사해 주세요.');
+            }
+        }
+
+        // ==================== 카드뉴스 생성기 기능 ====================
+        let currentCardTheme = 'red';
+
+        function setCardTheme(theme) {
+            currentCardTheme = theme;
+            const btnRed = document.getElementById('themeBtnRed');
+            const btnYellow = document.getElementById('themeBtnYellow');
+            const btnDark = document.getElementById('themeBtnDark');
+
+            const activeRed = "py-2 px-2 rounded-xl text-xs font-bold border-2 border-red-500 bg-red-50 text-red-700 flex flex-col items-center gap-1 cursor-pointer transition";
+            const activeYellow = "py-2 px-2 rounded-xl text-xs font-bold border-2 border-amber-500 bg-amber-50 text-amber-800 flex flex-col items-center gap-1 cursor-pointer transition";
+            const activeDark = "py-2 px-2 rounded-xl text-xs font-bold border-2 border-slate-900 bg-slate-100 text-slate-900 flex flex-col items-center gap-1 cursor-pointer transition";
+            const inactive = "py-2 px-2 rounded-xl text-xs font-bold border-2 border-gray-200 text-gray-700 flex flex-col items-center gap-1 cursor-pointer transition";
+
+            if (btnRed) btnRed.className = (theme === 'red') ? activeRed : inactive;
+            if (btnYellow) btnYellow.className = (theme === 'yellow') ? activeYellow : inactive;
+            if (btnDark) btnDark.className = (theme === 'dark') ? activeDark : inactive;
+
+            drawCardNews();
+        }
+
+        function quickSetBand(name) {
+            const input = document.getElementById('cardBandName');
+            if (input) {
+                input.value = name;
+                drawCardNews();
+            }
+        }
+
+        function resetCardForm() {
+            document.getElementById('cardBandName').value = "코스트코 반품마켓 학익점 방 (다락방, OCS)";
+            document.getElementById('cardHackerName').value = "이상철, 전시숙";
+            document.getElementById('cardWarning1').value = "1. 사기범 계좌 입금 절대 금지 (특가/할인 허위)";
+            document.getElementById('cardWarning2').value = "2. 방장 사칭 1:1 대화 및 외부 링크 / APK 클릭 금지";
+            document.getElementById('cardWarning3').value = "3. 경찰청 사이버범죄수사팀 정식 고소 접수 완료";
+            document.getElementById('cardContact').value = "비상 문의: 진짜 방장에게 전화/문자로 별도 확인 바랍니다";
+            setCardTheme('red');
+        }
+
+        function loadCardPreset(preset) {
+            if (preset === 1) {
+                document.getElementById('cardBandName').value = "코스트코 반품마켓 학익점 방";
+                document.getElementById('cardHackerName').value = "이상철, 전시숙 (해커)";
+                document.getElementById('cardWarning1').value = "1. 반품마켓 특가할인·공동구매 입금 절대 금지!";
+                document.getElementById('cardWarning2').value = "2. 방장 사칭 1:1 채팅의 개인계좌 송금 유도 주의";
+                document.getElementById('cardWarning3').value = "3. 현재 네이버 고객센터 및 경찰청 긴급 수사 중";
+                setCardTheme('red');
+            } else if (preset === 2) {
+                document.getElementById('cardBandName').value = "다락방 / OCS모임방 (친목·동호회 밴드)";
+                document.getElementById('cardHackerName').value = "이상철, 전시숙 (권한 탈취범)";
+                document.getElementById('cardWarning1').value = "1. 밴드에 올라오는 외부 링크 및 .apk 파일 클릭 금지";
+                document.getElementById('cardWarning2').value = "2. 방장 변경 알림 무시 및 회원 간 2차 피해 전파 차단";
+                document.getElementById('cardWarning3').value = "3. 본인 네이버 계정 2단계 인증 즉시 설정 필수";
+                setCardTheme('yellow');
+            } else if (preset === 3) {
+                document.getElementById('cardBandName').value = "피해 밴드 3곳 전체 (반품마켓·다락방·OCS)";
+                document.getElementById('cardHackerName').value = "이상철, 전시숙 (피의자 특정 및 영장 청구)";
+                document.getElementById('cardWarning1').value = "1. 경찰청 사이버범죄수사팀에 형사 고소장 정식 접수";
+                document.getElementById('cardWarning2').value = "2. 피의자 대포통장 사기이용계좌 긴급 지급정지 진행";
+                document.getElementById('cardWarning3').value = "3. 금전 피해 회원은 즉시 112 및 본 페이지 구제 신청";
+                setCardTheme('dark');
+            }
+        }
+
+        function drawCardNews() {
+            const canvas = document.getElementById('cardCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+
+            const bandName = document.getElementById('cardBandName')?.value.trim() || '코스트코 반품마켓 학익점 방';
+            const hackerName = document.getElementById('cardHackerName')?.value.trim() || '이상철, 전시숙';
+            const warn1 = document.getElementById('cardWarning1')?.value.trim() || '1. 사기범 계좌 입금 절대 금지';
+            const warn2 = document.getElementById('cardWarning2')?.value.trim() || '2. 외부 링크 / APK 클릭 금지';
+            const warn3 = document.getElementById('cardWarning3')?.value.trim() || '3. 경찰청 사이버수사팀 고소 접수 완료';
+            const contact = document.getElementById('cardContact')?.value.trim() || '';
+
+            // Update companion share text
+            updateCardShareText();
+
+            const W = 1080;
+            const H = 1080;
+
+            // 1. Background Fill
+            if (currentCardTheme === 'red') {
+                const grad = ctx.createLinearGradient(0, 0, W, H);
+                grad.addColorStop(0, '#580808');
+                grad.addColorStop(0.4, '#8a0d0d');
+                grad.addColorStop(1, '#b91c1c');
+                ctx.fillStyle = grad;
+                ctx.fillRect(0, 0, W, H);
+            } else if (currentCardTheme === 'yellow') {
+                const grad = ctx.createLinearGradient(0, 0, 0, H);
+                grad.addColorStop(0, '#111827');
+                grad.addColorStop(1, '#1f2937');
+                ctx.fillStyle = grad;
+                ctx.fillRect(0, 0, W, H);
+            } else {
+                // dark navy
+                const grad = ctx.createLinearGradient(0, 0, 0, H);
+                grad.addColorStop(0, '#0a0f1d');
+                grad.addColorStop(1, '#0f172a');
+                ctx.fillStyle = grad;
+                ctx.fillRect(0, 0, W, H);
+            }
+
+            // 2. Hazard Stripes (Top & Bottom)
+            drawHazardBar(ctx, 0, 0, W, 26);
+            drawHazardBar(ctx, 0, H - 26, W, 26);
+
+            // 3. Inner White Frame
+            ctx.lineWidth = (currentCardTheme === 'yellow') ? 6 : 4;
+            ctx.strokeStyle = (currentCardTheme === 'yellow') ? '#f59e0b' : 'rgba(255, 255, 255, 0.4)';
+            ctx.strokeRect(36, 44, W - 72, H - 88);
+
+            // 4. Top Siren Badge
+            const badgeText = "🚨 [긴급 비상 공지] 밴드 해킹 및 방장 사칭 주의보";
+            ctx.font = "bold 30px 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif";
+            const badgeW = ctx.measureText(badgeText).width + 60;
+            const badgeX = (W - badgeW) / 2;
+            const badgeY = 70;
+
+            drawRoundedRect(ctx, badgeX, badgeY, badgeW, 54, 27, (currentCardTheme === 'yellow') ? '#f59e0b' : '#ffffff');
+            ctx.fillStyle = (currentCardTheme === 'yellow') ? '#111827' : '#991b1b';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(badgeText, W / 2, badgeY + 27);
+
+            // 5. Huge Warning Title
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'top';
+            ctx.font = "900 60px 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif";
+            ctx.fillStyle = (currentCardTheme === 'yellow') ? '#fbbf24' : '#ffffff';
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
+            ctx.shadowBlur = 10;
+            ctx.shadowOffsetY = 4;
+            ctx.fillText("⚠️ 입금 및 링크 클릭 절대 금지 ⚠️", W / 2, 146);
+            ctx.shadowColor = 'transparent';
+            ctx.shadowBlur = 0;
+            ctx.shadowOffsetY = 0;
+
+            // 6. Sub title text
+            ctx.font = "bold 26px 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif";
+            ctx.fillStyle = (currentCardTheme === 'yellow') ? '#e5e7eb' : '#fed7aa';
+            ctx.fillText("관리자 계정 해킹으로 리더 권한이 강제 탈취되었습니다!", W / 2, 222);
+
+            // 7. Band & Hacker Target Box
+            const targetBoxY = 270;
+            const targetBoxH = 170;
+            drawRoundedRect(ctx, 70, targetBoxY, W - 140, targetBoxH, 20, '#ffffff', (currentCardTheme === 'yellow') ? '#fbbf24' : '#fecaca', 4);
+
+            ctx.textAlign = 'left';
+            ctx.fillStyle = '#6b7280';
+            ctx.font = "bold 22px 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif";
+            ctx.fillText("피해 확인 밴드", 106, targetBoxY + 30);
+
+            ctx.fillStyle = '#111827';
+            ctx.font = "900 36px 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif";
+            ctx.fillText(bandName, 106, targetBoxY + 60);
+
+            // Divider in target box
+            ctx.strokeStyle = '#e5e7eb';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(106, targetBoxY + 104);
+            ctx.lineTo(W - 106, targetBoxY + 104);
+            ctx.stroke();
+
+            ctx.fillStyle = '#dc2626';
+            ctx.font = "900 28px 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif";
+            ctx.fillText(`🚨 현재 표시된 가짜 방장:  ${hackerName} (해커/사기범)`, 106, targetBoxY + 124);
+
+            // 8. 3 Big Warning Rows
+            const warnRows = [
+                { icon: "🛑", text: warn1, sub: "특가 상품 판매, 파격 세일, 계좌 입금 요구는 100% 사기입니다." },
+                { icon: "🚫", text: warn2, sub: "방장 명의 1:1 대화로 오는 외부 웹주소나 첨부파일 절대 실행 금지" },
+                { icon: "⚖️", text: warn3, sub: "네이버 고객센터 및 경찰청 112 수사의뢰 및 권한 복구 진행 중" }
+            ];
+
+            let startWarnY = 466;
+            warnRows.forEach((row, idx) => {
+                const rowY = startWarnY + (idx * 110);
+                const bgBoxColor = (currentCardTheme === 'yellow') ? 'rgba(31, 41, 55, 0.85)' : 'rgba(0, 0, 0, 0.35)';
+                const strokeColor = (currentCardTheme === 'yellow') ? '#f59e0b' : 'rgba(255, 255, 255, 0.2)';
+
+                drawRoundedRect(ctx, 70, rowY, W - 140, 96, 16, bgBoxColor, strokeColor, 2);
+
+                ctx.textAlign = 'left';
+                ctx.font = "38px sans-serif";
+                ctx.fillText(row.icon, 96, rowY + 28);
+
+                ctx.fillStyle = (currentCardTheme === 'yellow') ? '#fbbf24' : '#ffffff';
+                ctx.font = "900 29px 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif";
+                ctx.fillText(row.text, 160, rowY + 20);
+
+                ctx.fillStyle = (currentCardTheme === 'yellow') ? '#9ca3af' : '#fecaca';
+                ctx.font = "normal 21px 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif";
+                ctx.fillText(row.sub, 160, rowY + 56);
+            });
+
+            // 9. Member Alert Callout Box
+            const calloutY = 816;
+            const calloutH = 110;
+            drawRoundedRect(ctx, 70, calloutY, W - 140, calloutH, 16, (currentCardTheme === 'yellow') ? '#1e293b' : 'rgba(255, 255, 255, 0.15)', 'rgba(255, 255, 255, 0.4)', 2);
+
+            ctx.textAlign = 'center';
+            ctx.fillStyle = '#ffffff';
+            ctx.font = "bold 26px 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif";
+            ctx.fillText("📢 회원 여러분! 이 이미지를 주변 회원분들께 즉시 전파해 주세요!", W / 2, calloutY + 22);
+
+            ctx.fillStyle = (currentCardTheme === 'yellow') ? '#cbd5e1' : '#fef08a';
+            ctx.font = "normal 22px 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif";
+            ctx.fillText("이미 입금하셨다면 지금 즉시 은행(또는 112)에 '사기이용계좌 지급정지'를 요청하세요.", W / 2, calloutY + 60);
+
+            // 10. Footer info
+            const footerY = 948;
+            ctx.textAlign = 'center';
+            if (contact) {
+                ctx.fillStyle = '#fde047';
+                ctx.font = "bold 25px 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif";
+                ctx.fillText(contact, W / 2, footerY);
+            }
+
+            ctx.fillStyle = (currentCardTheme === 'yellow') ? '#94a3b8' : 'rgba(255, 255, 255, 0.75)';
+            ctx.font = "normal 20px 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif";
+            ctx.fillText("경찰청 사이버수사국 (112) · 금융감독원 (1332) · 네이버 밴드 고객센터 공동 대응", W / 2, footerY + 36);
+            ctx.fillText("※ 본 카드는 피해 방지를 위해 관리자가 긴급 제작한 공식 비상 경고문입니다.", W / 2, footerY + 64);
+        }
+
+        function drawHazardBar(ctx, x, y, width, height) {
+            const stripeWidth = 24;
+            ctx.save();
+            ctx.beginPath();
+            ctx.rect(x, y, width, height);
+            ctx.clip();
+
+            ctx.fillStyle = '#fbbf24';
+            ctx.fillRect(x, y, width, height);
+
+            ctx.fillStyle = '#111827';
+            for (let i = -height; i < width + height; i += stripeWidth * 2) {
+                ctx.beginPath();
+                ctx.moveTo(i, y);
+                ctx.lineTo(i + stripeWidth, y);
+                ctx.lineTo(i + stripeWidth + height, y + height);
+                ctx.lineTo(i + height, y + height);
+                ctx.closePath();
+                ctx.fill();
+            }
+            ctx.restore();
+        }
+
+        function drawRoundedRect(ctx, x, y, width, height, radius, fillStyle, strokeStyle, lineWidth) {
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + width - radius, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+            ctx.lineTo(x + width, y + height - radius);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+            ctx.lineTo(x + radius, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+            ctx.closePath();
+
+            if (fillStyle) {
+                ctx.fillStyle = fillStyle;
+                ctx.fill();
+            }
+            if (strokeStyle) {
+                ctx.strokeStyle = strokeStyle;
+                ctx.lineWidth = lineWidth || 1;
+                ctx.stroke();
+            }
+        }
+
+        function downloadCardImage() {
+            const canvas = document.getElementById('cardCanvas');
+            if (!canvas) return;
+            const bandName = document.getElementById('cardBandName')?.value.trim() || 'band';
+            const cleanName = bandName.replace(/[^a-zA-Z0-9가-힣]/g, '_').substring(0, 20);
+
+            const link = document.createElement('a');
+            link.download = `[긴급경고]_밴드해킹_${cleanName}.png`;
+            link.href = canvas.toDataURL('image/png');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast("카드뉴스 이미지가 성공적으로 다운로드되었습니다!");
+        }
+
+        async function copyCardImageToClipboard() {
+            const canvas = document.getElementById('cardCanvas');
+            if (!canvas) return;
+
+            try {
+                canvas.toBlob(async (blob) => {
+                    if (!blob) {
+                        alert('이미지 생성에 실패했습니다.');
+                        return;
+                    }
+                    if (navigator.clipboard && window.ClipboardItem) {
+                        try {
+                            const item = new ClipboardItem({ 'image/png': blob });
+                            await navigator.clipboard.write([item]);
+                            showToast("카드뉴스 이미지가 클립보드에 복사되었습니다! (카톡 대화방에 Ctrl+V로 붙여넣기 하세요)");
+                        } catch (err) {
+                            console.warn('Clipboard write image failed, downloading instead:', err);
+                            downloadCardImage();
+                        }
+                    } else {
+                        downloadCardImage();
+                    }
+                }, 'image/png');
+            } catch (err) {
+                console.error(err);
+                downloadCardImage();
+            }
+        }
+
+        function updateCardShareText() {
+            const bandName = document.getElementById('cardBandName')?.value.trim() || '';
+            const hackerName = document.getElementById('cardHackerName')?.value.trim() || '';
+            const contact = document.getElementById('cardContact')?.value.trim() || '';
+
+            const shareText = `🚨 [비상 경고] 밴드 해킹 및 방장 사칭 금전 사기 주의!
+
+회원 여러분, 지금 첨부된 카드뉴스 이미지를 꼭 확인해 주십시오!
+현재 운영 중인 [${bandName}]의 관리자 계정이 해킹당하여 리더 권한을 강제 탈취당했습니다.
+
+⚠️ 현재 밴드에 표시된 방장('${hackerName}')은 가짜 사기범(해커)입니다!
+• 밴드에 올라오는 특가 상품, 반품마켓 할인, 입금 요구에 절대 돈을 보내지 마십시오!
+• 방장 사칭 1:1 대화 및 링크 클릭을 절대 하지 마십시오!
+• 이미 입금하셨다면 즉시 112 또는 해당 은행에 전화하여 '사기계좌 지급정지'를 신청하십시오!
+
+${contact ? contact + '\n' : ''}주변 회원분들께도 이 이미지를 널리 전파하여 2차 피해를 막아주시기 바랍니다.`;
+
+            const textarea = document.getElementById('cardShareText');
+            if (textarea) textarea.value = shareText;
+        }
+
+        async function copyCardShareText() {
+            const textarea = document.getElementById('cardShareText');
+            if (!textarea) return;
+            const textToCopy = textarea.value;
+
+            let success = false;
+            if (navigator.clipboard && window.isSecureContext) {
+                try {
+                    await navigator.clipboard.writeText(textToCopy);
+                    success = true;
+                } catch (err) {
+                    console.warn(err);
+                }
+            }
+            if (!success) {
+                textarea.select();
+                textarea.setSelectionRange(0, 99999);
+                try {
+                    document.execCommand('copy');
+                    success = true;
+                } catch (err) {
+                    console.error(err);
+                }
+            }
+            if (success) {
+                showToast("카드뉴스 설명글이 클립보드에 복사되었습니다!");
+            }
+        }
+
+        // ==================== 사기 계좌·번호 조회기 기능 ====================
+        let currentSearchType = 'account';
+
+        function setSearchType(type) {
+            currentSearchType = type;
+            const btnAcc = document.getElementById('searchTypeAccountBtn');
+            const btnPhone = document.getElementById('searchTypePhoneBtn');
+            const label = document.getElementById('searchTargetLabel');
+            const input = document.getElementById('fraudSearchInput');
+
+            const activeBtn = "py-2 px-4 rounded-xl font-bold text-xs sm:text-sm bg-cyan-600 text-white shadow-xs transition flex items-center gap-1.5 cursor-pointer";
+            const inactiveBtn = "py-2 px-4 rounded-xl font-medium text-xs sm:text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition flex items-center gap-1.5 cursor-pointer";
+
+            if (type === 'account') {
+                if (btnAcc) btnAcc.className = activeBtn;
+                if (btnPhone) btnPhone.className = inactiveBtn;
+                if (label) label.innerText = "💳 사기 의심 계좌번호 입력 (하이픈 '-' 없이 숫자만 입력 가능)";
+                if (input) input.placeholder = "예: 3333011234567 (계좌번호 숫자만)";
+            } else {
+                if (btnAcc) btnAcc.className = inactiveBtn;
+                if (btnPhone) btnPhone.className = activeBtn;
+                if (label) label.innerText = "📱 사기 의심 전화번호 / 휴대폰 번호 입력 (하이픈 '-' 없이 숫자만 입력)";
+                if (input) input.placeholder = "예: 01012345678 (전화번호 숫자만)";
+            }
+        }
+
+        function setSearchValue(val) {
+            const input = document.getElementById('fraudSearchInput');
+            if (input) {
+                input.value = val;
+                input.focus();
+            }
+        }
+
+        function clearSearchInput() {
+            const input = document.getElementById('fraudSearchInput');
+            if (input) {
+                input.value = '';
+                input.focus();
+            }
+        }
+
+        function executeFraudSearch(engine) {
+            const input = document.getElementById('fraudSearchInput');
+            const query = (input?.value || '').trim().replace(/[^0-9a-zA-Z가-힣]/g, '');
+
+            if (!query) {
+                alert('조회할 계좌번호 또는 전화번호를 입력해 주십시오.');
+                if (input) input.focus();
+                return;
+            }
+
+            if (engine === 'cybercop') {
+                const cyberCopUrl = "https://www.police.go.kr/www/security/cyber/cyber04.jsp";
+                window.open(cyberCopUrl, '_blank');
+                showToast("경찰청 사이버캅 조회 페이지로 이동합니다. 입력창에 번호를 붙여넣으세요!");
+            } else if (engine === 'thecheat') {
+                const theCheatUrl = `https://thecheat.co.kr/rb/?mod=_search&keyword=${encodeURIComponent(query)}`;
+                window.open(theCheatUrl, '_blank');
+                showToast("더치트(TheCheat) 데이터베이스 검색 결과 페이지로 이동합니다!");
             }
         }
     </script>
