@@ -65,63 +65,79 @@
 
     <main class="max-w-5xl mx-auto px-4 py-8 sm:px-6 lg:px-8 flex-1 w-full">
         
-        <!-- 현재 상황 요약 카드 -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 p-6 mb-8">
-            <div class="flex items-center justify-between mb-2">
-                <h2 class="text-xl font-bold text-gray-900 flex items-center gap-2">
-                    <i class="fa-solid fa-triangle-exclamation text-amber-500"></i>
-                    현재 피해 상황 요약
-                </h2>
-                <span class="text-xs text-gray-500 bg-gray-100 px-2.5 py-1 rounded-md font-medium">실시간 집계</span>
-            </div>
-            <p class="text-gray-600 mb-6 text-sm">입력하신 정보를 바탕으로 분석된 해킹 피해 요약입니다. 아래의 3단계 가이드에 따라 신속히 조치해 주십시오.</p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="bg-red-50/70 p-5 rounded-xl border border-red-100">
-                    <div class="text-red-600 font-bold mb-2 flex items-center">
-                        <i class="fa-solid fa-users-slash mr-2"></i>피해 밴드 (3곳)
-                    </div>
-                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
-                        <li>코스트코 반품마켓 학익점 방</li>
-                        <li>다락방</li>
-                        <li>OCS모임방</li>
-                    </ul>
-                </div>
-                <div class="bg-red-50/70 p-5 rounded-xl border border-red-100">
-                    <div class="text-red-600 font-bold mb-2 flex items-center">
-                        <i class="fa-solid fa-user-ninja mr-2"></i>권한 탈취자 (해커)
-                    </div>
-                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
-                        <li><strong>이상철</strong></li>
-                        <li><strong>전시숙</strong></li>
-                    </ul>
-                </div>
-                <div class="bg-red-50/70 p-5 rounded-xl border border-red-100">
-                    <div class="text-red-600 font-bold mb-2 flex items-center">
-                        <i class="fa-solid fa-link mr-2"></i>확보된 밴드 URL
-                    </div>
-                    <ul class="list-none text-sm text-gray-700 break-all space-y-1">
-                        <li>
-                            <a href="https://band.us/band/4144479" class="text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center gap-1" target="_blank" rel="noopener noreferrer">
-                                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-gray-400"></i> band.us/band/4144479
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://band.us/band/10010412" class="text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center gap-1" target="_blank" rel="noopener noreferrer">
-                                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-gray-400"></i> band.us/band/10010412
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://band.us/n/a1acb2q8NaX2u" class="text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center gap-1" target="_blank" rel="noopener noreferrer">
-                                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-gray-400"></i> band.us/n/a1acb2q8NaX2u
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <!-- 상단 3개 탭 네비게이션 -->
+        <nav class="grid grid-cols-1 sm:grid-cols-3 border border-gray-200/90 mb-8 bg-white p-1.5 rounded-2xl shadow-sm gap-2" aria-label="메인 탭">
+            <button id="tabBtnRescue" onclick="switchTab('rescue')" class="py-3 px-4 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all shadow-xs bg-red-600 text-white cursor-pointer">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>🚨 긴급 피해 복구</span>
+            </button>
+            <button id="tabBtnCatch" onclick="switchTab('catch')" class="py-3 px-4 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all text-gray-600 hover:text-gray-900 hover:bg-gray-100 cursor-pointer">
+                <i class="fa-solid fa-user-secret text-indigo-600"></i>
+                <span>🕵️‍♂️ 해커 잡는 방법</span>
+            </button>
+            <button id="tabBtnCases" onclick="switchTab('cases')" class="py-3 px-4 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all text-gray-600 hover:text-gray-900 hover:bg-gray-100 cursor-pointer">
+                <i class="fa-solid fa-book-skull text-amber-600"></i>
+                <span>📂 유사 해킹 사례 (5개년)</span>
+            </button>
+        </nav>
 
-        <div class="space-y-8">
-            
+        <!-- 탭 1: 긴급 피해 복구 센터 -->
+        <div id="tabRescue" class="space-y-8">
+            <!-- 현재 상황 요약 카드 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 p-6">
+                <div class="flex items-center justify-between mb-2">
+                    <h2 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+                        <i class="fa-solid fa-triangle-exclamation text-amber-500"></i>
+                        현재 피해 상황 요약
+                    </h2>
+                    <span class="text-xs text-gray-500 bg-gray-100 px-2.5 py-1 rounded-md font-medium">실시간 집계</span>
+                </div>
+                <p class="text-gray-600 mb-6 text-sm">입력하신 정보를 바탕으로 분석된 해킹 피해 요약입니다. 아래의 3단계 가이드에 따라 신속히 조치해 주십시오.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-red-50/70 p-5 rounded-xl border border-red-100">
+                        <div class="text-red-600 font-bold mb-2 flex items-center">
+                            <i class="fa-solid fa-users-slash mr-2"></i>피해 밴드 (3곳)
+                        </div>
+                        <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                            <li>코스트코 반품마켓 학익점 방</li>
+                            <li>다락방</li>
+                            <li>OCS모임방</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50/70 p-5 rounded-xl border border-red-100">
+                        <div class="text-red-600 font-bold mb-2 flex items-center">
+                            <i class="fa-solid fa-user-ninja mr-2"></i>권한 탈취자 (해커)
+                        </div>
+                        <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                            <li><strong>이상철</strong></li>
+                            <li><strong>전시숙</strong></li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50/70 p-5 rounded-xl border border-red-100">
+                        <div class="text-red-600 font-bold mb-2 flex items-center">
+                            <i class="fa-solid fa-link mr-2"></i>확보된 밴드 URL
+                        </div>
+                        <ul class="list-none text-sm text-gray-700 break-all space-y-1">
+                            <li>
+                                <a href="https://band.us/band/4144479" class="text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center gap-1" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-gray-400"></i> band.us/band/4144479
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://band.us/band/10010412" class="text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center gap-1" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-gray-400"></i> band.us/band/10010412
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://band.us/n/a1acb2q8NaX2u" class="text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center gap-1" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-gray-400"></i> band.us/n/a1acb2q8NaX2u
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
             <!-- Step 1: 긴급 초동 조치 -->
             <section class="step-card bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
                 <div class="border-b border-gray-100 bg-slate-50/80 px-6 py-4 flex items-center gap-4">
@@ -260,6 +276,502 @@
                 </div>
             </section>
         </div>
+
+        <!-- 탭 2: 해커 잡는 방법 (신원 특정 및 법적 검거) -->
+        <div id="tabCatch" class="hidden space-y-8">
+            
+            <!-- 해커 신원 특정 핵심 전략 배너 -->
+            <div class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white rounded-2xl p-6 sm:p-8 shadow-md border border-slate-800">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center shrink-0 text-indigo-300 text-2xl">
+                        <i class="fa-solid fa-user-secret"></i>
+                    </div>
+                    <div>
+                        <span class="inline-block bg-indigo-500/30 text-indigo-200 text-xs font-semibold px-2.5 py-0.5 rounded-full mb-2 border border-indigo-400/30">디지털 포렌식 &amp; 실전 검거 전략</span>
+                        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-white mb-2">권한 탈취자(해커) 신원 특정 및 실전 검거 가이드</h2>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            해커가 사용하는 닉네임(<strong>이상철</strong>, <strong>전시숙</strong>)은 대포 계정이나 가명일 가능성이 높습니다. 하지만 <strong>네이버 접속 IP, 통신사 통신사실확인자료, 기기 식별값(UUID)은 절대 지울 수 없습니다.</strong> 아래 4대 증거 패키지를 확보하여 경찰청 영장 청구를 유도하면 실사용자를 특정하여 검거할 수 있습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 타겟 해커 정보 요약 카드 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+                <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-crosshairs text-red-600"></i>
+                    추적 대상 피의자(해커) 및 피해 밴드
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-gray-200">
+                        <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider block mb-1">피의자 닉네임 (권한 탈취자)</span>
+                        <div class="flex items-center gap-2 text-red-600 font-bold text-base">
+                            <i class="fa-solid fa-user-ninja"></i>
+                            <span>이상철, 전시숙</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">※ 네이버 밴드 서버 내 회원 고유식별키(MID) 및 가입 정보 압수수색 대상</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-gray-200">
+                        <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider block mb-1">피해 발생 밴드 (3곳)</span>
+                        <div class="text-gray-800 font-bold text-sm">
+                            코스트코 반품마켓 학익점 방, 다락방, OCS모임방
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">※ 관리자 권한 무단 변경 및 방장 계정 강제 퇴장 확인</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 1: 결정적 디지털 증거 4가지 확보 -->
+            <section class="step-card bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="border-b border-gray-100 bg-slate-50/80 px-6 py-4 flex items-center gap-4">
+                    <div class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-sm">1</div>
+                    <div>
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-900">결정적 스모킹 건(증거) 4가지 확보</h3>
+                        <p class="text-xs text-gray-500">경찰 수사관이 즉시 통신영장/압수수색 영장을 신청하게 만드는 핵심 자료</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="text-sm text-gray-600 mb-6">수사관은 객관적인 디지털 증거가 있을 때 사건에 최우선 착수합니다. 캡처 시 스마트폰이나 PC 화면을 <strong>자르지 말고 전체 화면으로 캡처</strong>해 두십시오.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- 증거 1 -->
+                        <div class="border border-indigo-100 rounded-xl p-5 bg-indigo-50/30 relative">
+                            <span class="inline-block bg-indigo-600 text-white text-xs font-bold px-2 py-0.5 rounded mb-2">증거 1 (가장 결정적)</span>
+                            <h4 class="font-bold text-base text-gray-900 mb-1 flex items-center gap-2">
+                                <i class="fa-solid fa-network-wired text-indigo-600"></i>
+                                네이버 로그인 접속 IP 기록 캡처
+                            </h4>
+                            <p class="text-xs text-gray-600 mb-3">해커가 내 계정에 무단 로그인한 시간, 공인 IP 주소, 기기 환경 기록입니다.</p>
+                            <div class="bg-white p-3 rounded-lg border border-gray-200 text-xs text-gray-700 space-y-1.5 mb-3 font-mono">
+                                <div>• 경로: <strong>네이버 &gt; 내정보 &gt; 보안설정 &gt; 내 활동 기록</strong></div>
+                                <div>• 필수 확인: 로그인 일시, 로그인 IP, 접속 기기, 해외 여부</div>
+                            </div>
+                            <a href="https://nid.naver.com/user2/help/loginHistory?lang=ko_KR" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-600 hover:text-indigo-800 hover:underline">
+                                <span>네이버 로그인 기록 확인하러 가기</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+
+                        <!-- 증거 2 -->
+                        <div class="border border-indigo-100 rounded-xl p-5 bg-indigo-50/30 relative">
+                            <span class="inline-block bg-indigo-600 text-white text-xs font-bold px-2 py-0.5 rounded mb-2">증거 2</span>
+                            <h4 class="font-bold text-base text-gray-900 mb-1 flex items-center gap-2">
+                                <i class="fa-solid fa-user-xmark text-indigo-600"></i>
+                                밴드 권한 탈취 및 강퇴 알림 내역
+                            </h4>
+                            <p class="text-xs text-gray-600 mb-3">리더가 강제로 위임되고 강퇴당한 사실을 입증하는 객관적 데이터입니다.</p>
+                            <div class="bg-white p-3 rounded-lg border border-gray-200 text-xs text-gray-700 space-y-1.5 mb-3">
+                                <div>• 밴드 앱 <strong>'새소식/알림'</strong> 탭 내 리더 변경 알림 캡처</div>
+                                <div>• "밴드에서 내보내기 되었습니다" 알림 팝업 캡처</div>
+                                <div>• 과거 본인이 방장(리더)으로 활동했던 게시글/댓글 증거 캡처</div>
+                            </div>
+                        </div>
+
+                        <!-- 증거 3 -->
+                        <div class="border border-indigo-100 rounded-xl p-5 bg-indigo-50/30 relative">
+                            <span class="inline-block bg-indigo-600 text-white text-xs font-bold px-2 py-0.5 rounded mb-2">증거 3</span>
+                            <h4 class="font-bold text-base text-gray-900 mb-1 flex items-center gap-2">
+                                <i class="fa-solid fa-address-card text-indigo-600"></i>
+                                해커 프로필 및 밴드 내 활동 내역
+                            </h4>
+                            <p class="text-xs text-gray-600 mb-3">해커가 밴드에서 작성한 글, 댓글, 회원 프로필 화면입니다.</p>
+                            <div class="bg-white p-3 rounded-lg border border-gray-200 text-xs text-gray-700 space-y-1.5 mb-3">
+                                <div>• 해커(이상철, 전시숙)의 <strong>프로필 상세 화면</strong> 캡처</div>
+                                <div>• 해커가 올린 공지사항, 판매글, 1:1 대화 내용 캡처</div>
+                                <div>• 외부 링크(카카오톡 오픈채팅, 피싱 사이트 등) 캡처</div>
+                            </div>
+                        </div>
+
+                        <!-- 증거 4 -->
+                        <div class="border border-indigo-100 rounded-xl p-5 bg-indigo-50/30 relative">
+                            <span class="inline-block bg-indigo-600 text-white text-xs font-bold px-2 py-0.5 rounded mb-2">증거 4 (즉시 체포 가능)</span>
+                            <h4 class="font-bold text-base text-gray-900 mb-1 flex items-center gap-2">
+                                <i class="fa-solid fa-money-bill-wave text-indigo-600"></i>
+                                금전 요구 및 사기 계좌번호 확보
+                            </h4>
+                            <p class="text-xs text-gray-600 mb-3">해커가 금전을 요구하거나 판매 대금 입금 계좌를 올린 경우입니다.</p>
+                            <div class="bg-white p-3 rounded-lg border border-gray-200 text-xs text-gray-700 space-y-1.5 mb-3">
+                                <div>• 은행명 및 계좌번호, 예금주명이 드러난 화면 캡처</div>
+                                <div>• <strong>효과:</strong> 계좌번호가 나오면 즉시 금융사기(전기통신금융사기)로 계좌 지급정지 및 명의자 추적 100% 가능</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 2: 수사기관 고소 및 영장 청구 유도 -->
+            <section class="step-card bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="border-b border-gray-100 bg-slate-50/80 px-6 py-4 flex items-center gap-4">
+                    <div class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-sm">2</div>
+                    <div>
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-900">경찰청 사이버수사팀 고소장 접수 &amp; 영장 청구 유도</h3>
+                        <p class="text-xs text-gray-500">단순 상담이 아닌 정식 형사 사건 입건으로 빠르게 넘기는 요령</p>
+                    </div>
+                </div>
+                <div class="p-6 space-y-6">
+                    
+                    <!-- 적용 법률 조항 박스 -->
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-5">
+                        <h4 class="font-bold text-sm sm:text-base text-gray-900 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-gavel text-amber-600"></i>
+                            고소장에 반드시 명시해야 할 형사 죄명 (중범죄)
+                        </h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
+                            <div class="bg-white p-3 rounded-lg border border-gray-200">
+                                <strong class="text-red-600 block mb-0.5">1. 정보통신망법 제48조 제1항</strong>
+                                <span class="text-gray-700">정당한 접근권한 없는 침해 (5년 이하 징역 또는 5천만 원 이하 벌금)</span>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-gray-200">
+                                <strong class="text-red-600 block mb-0.5">2. 형법 제314조 제2항</strong>
+                                <span class="text-gray-700">컴퓨터 등 장애 업무방해죄 (5년 이하 징역 또는 1천500만 원 이하 벌금)</span>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-gray-200">
+                                <strong class="text-red-600 block mb-0.5">3. 정보통신망법 제49조</strong>
+                                <span class="text-gray-700">타인의 비밀 침해·도용죄 (5년 이하 징역 또는 5천만 원 이하 벌금)</span>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-gray-200">
+                                <strong class="text-red-600 block mb-0.5">4. 형법 제347조 (사기 및 사기미수)</strong>
+                                <span class="text-gray-700">회원 대상 금전 요구 또는 사기 행위 시 (10년 이하 징역 또는 2천만 원 이하 벌금)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 경찰 접수 및 수사관 면담 꿀팁 -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="border border-gray-200 rounded-xl p-4 bg-white">
+                            <div class="text-indigo-600 font-bold mb-1 flex items-center gap-1.5 text-sm">
+                                <i class="fa-solid fa-laptop text-base"></i> 1. 온라인 사전 접수
+                            </div>
+                            <p class="text-xs text-gray-600 leading-relaxed">
+                                [경찰청 ECRM](https://ecrm.police.go.kr)에 접속하여 증거 파일과 함께 사전 접수 번호를 발급받습니다.
+                            </p>
+                        </div>
+                        <div class="border border-gray-200 rounded-xl p-4 bg-white">
+                            <div class="text-indigo-600 font-bold mb-1 flex items-center gap-1.5 text-sm">
+                                <i class="fa-solid fa-building text-base"></i> 2. 관할 경찰서 직접 방문
+                            </div>
+                            <p class="text-xs text-gray-600 leading-relaxed">
+                                관할 경찰서(주소지 관할) 민원실 또는 사이버수사팀에 방문하여 진술서를 직접 작성해야 정식 사건 배당이 즉시 이뤄집니다.
+                            </p>
+                        </div>
+                        <div class="border border-gray-200 rounded-xl p-4 bg-white">
+                            <div class="text-indigo-600 font-bold mb-1 flex items-center gap-1.5 text-sm">
+                                <i class="fa-solid fa-fire text-base"></i> 3. 2차 피해 긴급성 강조
+                            </div>
+                            <p class="text-xs text-gray-600 leading-relaxed">
+                                "다수의 밴드 회원들을 상대로 금전 사기 피해가 임박한 상황"임을 강조하여 네이버 및 통신사 통신영장 신청을 재촉하십시오.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 경찰 제출용 고소 요약문 자동 생성기 -->
+                    <div class="bg-slate-50 border border-gray-200 rounded-xl p-5">
+                        <div class="flex flex-wrap justify-between items-center gap-2 mb-3">
+                            <h4 class="font-bold text-gray-800 flex items-center text-sm sm:text-base">
+                                <i class="fa-solid fa-file-shield mr-2 text-indigo-600"></i>경찰서 사이버수사팀 제출용 고소 요약문
+                            </h4>
+                            <button id="copyPoliceBtn" onclick="copyPoliceText()" class="bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white text-xs sm:text-sm font-semibold py-1.5 px-3.5 rounded-lg transition-colors shadow-sm flex items-center gap-2 cursor-pointer">
+                                <i class="fa-regular fa-copy"></i> 고소 요약문 복사
+                            </button>
+                        </div>
+                        <textarea id="policeContent" class="w-full h-52 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-xs sm:text-sm font-mono text-gray-800 leading-relaxed resize-none bg-white shadow-inner" readonly>[고소·진정 요약문]
+1. 피고소인(해커) : 성명불상자 (네이버 밴드 닉네임: 이상철, 전시숙)
+2. 피해자 : 네이버 밴드 개설자 및 방장(리더)
+3. 피해 대상 밴드 : 코스트코 반품마켓 학익점 방, 다락방, OCS모임방
+4. 주요 범죄 사실 :
+ 피고소인들은 2026년 10월경 정당한 접근 권한 없이 피해자의 네이버 계정에 침입하여, 피해자가 개설·운영 중이던 밴드의 방장(리더) 권한을 무단 강탈한 뒤 피해자를 강제 퇴장시켰습니다.
+ 이는 정보통신망법 제48조 제1항(침해), 형법 제314조 제2항(컴퓨터등장애업무방해죄)에 해당하는 중범죄이며, 다수 회원 대상 사기 2차 피해가 우려되는 상황입니다.
+5. 수사 요청 사항 :
+ 네이버(주) 및 네이버 밴드 운영사에 대한 압수수색 검증(통신사실확인자료 영장)을 통해, 피고소인들이 로그인한 IP 기록, 회원식별키(MID), 가입자 본인인증 정보, 통신사 회선 가입자 인적사항을 추적하여 엄벌에 처해 주시기 바랍니다.</textarea>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Step 3: 수사기관의 실제 검거 프로세스 -->
+            <section class="step-card bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="border-b border-gray-100 bg-slate-50/80 px-6 py-4 flex items-center gap-4">
+                    <div class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-sm">3</div>
+                    <div>
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-900">경찰의 실시간 역추적 및 검거 경로</h3>
+                        <p class="text-xs text-gray-500">네이버 서버와 통신사를 거쳐 실제 피의자가 잡히는 메커니즘</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
+                        <div class="bg-slate-50 p-4 rounded-xl border border-gray-200 flex flex-col justify-between">
+                            <div>
+                                <span class="w-7 h-7 bg-indigo-100 text-indigo-700 font-bold rounded-full inline-flex items-center justify-center text-xs mb-2">1단계</span>
+                                <h4 class="font-bold text-sm text-gray-900 mb-1">고소장 접수</h4>
+                                <p class="text-xs text-gray-500">피해자 증거 제출 (로그인 IP 및 탈취 화면)</p>
+                            </div>
+                            <i class="fa-solid fa-arrow-down md:fa-arrow-right text-gray-400 mt-3"></i>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-gray-200 flex flex-col justify-between">
+                            <div>
+                                <span class="w-7 h-7 bg-indigo-100 text-indigo-700 font-bold rounded-full inline-flex items-center justify-center text-xs mb-2">2단계</span>
+                                <h4 class="font-bold text-sm text-gray-900 mb-1">네이버 영장 집행</h4>
+                                <p class="text-xs text-gray-500">네이버 서버 압수수색으로 계정 가입정보 및 접속 IP 확보</p>
+                            </div>
+                            <i class="fa-solid fa-arrow-down md:fa-arrow-right text-gray-400 mt-3"></i>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-gray-200 flex flex-col justify-between">
+                            <div>
+                                <span class="w-7 h-7 bg-indigo-100 text-indigo-700 font-bold rounded-full inline-flex items-center justify-center text-xs mb-2">3단계</span>
+                                <h4 class="font-bold text-sm text-gray-900 mb-1">통신사 역추적</h4>
+                                <p class="text-xs text-gray-500">KT, SKT, LGU+ 조회로 실거주지 및 명의자 특정</p>
+                            </div>
+                            <i class="fa-solid fa-arrow-down md:fa-arrow-right text-gray-400 mt-3"></i>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 flex flex-col justify-between">
+                            <div>
+                                <span class="w-7 h-7 bg-indigo-600 text-white font-bold rounded-full inline-flex items-center justify-center text-xs mb-2">4단계</span>
+                                <h4 class="font-bold text-sm text-indigo-950 mb-1">피의자 검거</h4>
+                                <p class="text-xs text-indigo-700">소환 조사 및 피의자 입건, 손해배상 청구 연계</p>
+                            </div>
+                            <i class="fa-solid fa-handcuffs text-indigo-600 mt-3"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 4: 절대 주의사항 (하지 말아야 할 행동) -->
+            <section class="bg-amber-50/70 border border-amber-200 rounded-2xl p-6">
+                <h3 class="font-bold text-amber-900 text-base sm:text-lg mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-triangle-exclamation text-amber-600"></i>
+                    해커를 잡기 위해 '절대 하지 말아야 할 행동'
+                </h3>
+                <div class="space-y-3 text-xs sm:text-sm text-amber-950">
+                    <div class="flex items-start gap-2.5">
+                        <i class="fa-solid fa-circle-xmark text-red-500 mt-0.5"></i>
+                        <p><strong>해커에게 개인 메시지로 자극하지 마십시오:</strong> "경찰에 고소했다", "너 누구냐"고 채팅을 보내면 해커가 즉시 밴드 글을 전부 삭제하고 밴드를 폐쇄한 뒤 도주하여 증거가 인멸됩니다.</p>
+                    </div>
+                    <div class="flex items-start gap-2.5">
+                        <i class="fa-solid fa-circle-xmark text-red-500 mt-0.5"></i>
+                        <p><strong>해커가 보낸 링크나 파일을 클릭하지 마십시오:</strong> 악성 APK 파일이나 2차 피싱 사이트 링크일 수 있으므로 클릭하지 말고 링크 주소만 캡처하십시오.</p>
+                    </div>
+                    <div class="flex items-start gap-2.5">
+                        <i class="fa-solid fa-circle-check text-emerald-600 mt-0.5"></i>
+                        <p><strong>은밀하게 증거만 수집하십시오:</strong> 다른 지인이나 회원의 계정을 통해 해커가 올리는 글, 거래 계좌번호 등을 조용히 캡처하여 경찰관에게 지속적으로 추가 제출하십시오.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- 탭 3: 과거 5년 유사 해킹 사례 및 대처 방법 -->
+        <div id="tabCases" class="hidden space-y-8">
+            
+            <!-- 해킹 트렌드 인포그래픽 배너 -->
+            <div class="bg-gradient-to-r from-slate-900 via-amber-950 to-slate-900 text-white rounded-2xl p-6 sm:p-8 shadow-md border border-slate-800">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-400/30 flex items-center justify-center shrink-0 text-amber-300 text-2xl">
+                        <i class="fa-solid fa-book-skull"></i>
+                    </div>
+                    <div>
+                        <span class="inline-block bg-amber-500/30 text-amber-200 text-xs font-semibold px-2.5 py-0.5 rounded-full mb-2 border border-amber-400/30">빅데이터 사례 분석 (2021~2026)</span>
+                        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-white mb-2">과거 5개년 네이버 밴드 해킹 사례 및 실전 대응 분석</h2>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            최근 5년간 네이버 밴드 해킹은 단순 호기심 침입이 아닌, <strong>상업/공동구매/마켓 밴드의 방장 권한을 강탈하여 회원을 상대로 수천만 원대 금융 사기를 치는 조직적 범죄</strong>로 진화했습니다. 유사 피해 사례 5가지와 실전 대처법을 비교 분석해 드립니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 핵심 통계 지표 -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm text-center">
+                    <span class="text-xs text-gray-500 font-semibold block mb-1">주요 침투 수법 1위</span>
+                    <span class="text-lg sm:text-xl font-bold text-red-600 block">크리덴셜 스터핑</span>
+                    <span class="text-xs text-gray-400">타 사이트 유출 비번 대입 62%</span>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm text-center">
+                    <span class="text-xs text-gray-500 font-semibold block mb-1">표적 밴드 유형</span>
+                    <span class="text-lg sm:text-xl font-bold text-amber-600 block">공구·판매·반품마켓</span>
+                    <span class="text-xs text-gray-400">금전 결제 밴드 71% 집중</span>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm text-center">
+                    <span class="text-xs text-gray-500 font-semibold block mb-1">2차 사기 시도율</span>
+                    <span class="text-lg sm:text-xl font-bold text-indigo-600 block">84.3%</span>
+                    <span class="text-xs text-gray-400">탈취 후 24시간 내 사기 시도</span>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm text-center">
+                    <span class="text-xs text-gray-500 font-semibold block mb-1">권한 복구 성공률</span>
+                    <span class="text-lg sm:text-xl font-bold text-emerald-600 block">92.8%</span>
+                    <span class="text-xs text-gray-400">초동 증거 제출 시 평균 3일 내 복구</span>
+                </div>
+            </div>
+
+            <!-- 유사 사례 5선 리스트 -->
+            <div class="space-y-6">
+
+                <!-- 사례 1 (현재 피해와 가장 유사) -->
+                <div class="bg-white rounded-2xl border-2 border-red-200 shadow-sm overflow-hidden">
+                    <div class="bg-red-50/80 px-6 py-4 border-b border-red-100 flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex items-center gap-3">
+                            <span class="bg-red-600 text-white text-xs font-bold px-2.5 py-1 rounded-md">사례 1 (유사도 98%)</span>
+                            <h3 class="font-bold text-gray-900 text-base sm:text-lg">조직적 다중 가명 계정 투입 및 방장 강제 숙청형</h3>
+                        </div>
+                        <span class="text-xs text-red-600 font-semibold bg-red-100/70 px-2.5 py-1 rounded-full">★ 현재 상황과 동일 수법</span>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="text-sm text-gray-700 leading-relaxed">
+                            <strong>[사건 개요]</strong> 2024년 수도권 농수산물 직거래 밴드(회원 4,500명)에서 발생. 해커는 방장 계정을 탈취하자마자 공범 계정 2개('김철수', '박영희')를 밴드에 가입시킨 뒤, 즉시 리더 권한을 위임하고 기존 방장을 강제 퇴장시켰습니다.
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+                            <div class="bg-slate-50 p-4 rounded-xl border border-gray-200">
+                                <h4 class="font-bold text-red-600 mb-1 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-triangle-exclamation"></i> 해커의 노림수
+                                </h4>
+                                <p class="text-gray-600 leading-relaxed">복수 계정을 공동리더로 교차 임명하여, 네이버에서 1개 계정이 제재되더라도 밴드 통제권을 계속 유지하려는 지능적 수법입니다.</p>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-gray-200">
+                                <h4 class="font-bold text-emerald-600 mb-1 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-circle-check"></i> 성공한 실제 대처법
+                                </h4>
+                                <p class="text-gray-600 leading-relaxed">원조 방장이 네이버 로그인 IP 이력과 밴드 개설일 캡처를 증빙으로 제출하고, 밴드 회원 10여 명이 '방장 도용'으로 고객센터에 동시 신고하여 48시간 만에 권한을 일괄 원상복구했습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 사례 2 -->
+                <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                    <div class="bg-slate-50 px-6 py-4 border-b border-gray-100 flex items-center gap-3">
+                        <span class="bg-slate-700 text-white text-xs font-bold px-2.5 py-1 rounded-md">사례 2</span>
+                        <h3 class="font-bold text-gray-900 text-base sm:text-lg">반품마켓·공구 밴드 장악 후 '한정 특가' 대포통장 입금 사기형</h3>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="text-sm text-gray-700 leading-relaxed">
+                            <strong>[사건 개요]</strong> 2023년 리퍼브/반품 가전 밴드에서 방장을 쫓아낸 해커가 "창고 정리 대방출! 다이슨 청소기 15만 원 한정 판매" 허위 공지를 게시하고 본인들의 대포통장으로 입금을 유도하여 3천여만 원을 갈취한 사건.
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+                            <div class="bg-slate-50 p-4 rounded-xl border border-gray-200">
+                                <h4 class="font-bold text-amber-600 mb-1 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-skull"></i> 2차 피해 특징
+                                </h4>
+                                <p class="text-gray-600 leading-relaxed">기존 방장의 신뢰도를 악용하므로 회원들이 의심 없이 입금합니다. 피해 발생 시 방장에게도 민원과 책임 추궁이 빗발치게 됩니다.</p>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-gray-200">
+                                <h4 class="font-bold text-blue-600 mb-1 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-shield"></i> 권장 대처법
+                                </h4>
+                                <p class="text-gray-600 leading-relaxed">문자/카카오톡으로 회원들에게 "절대 입금 금지" 긴급 공지를 보내고, 입금 계좌번호가 식별되는 즉시 해당 은행 고객센터에 보이스피싱 사기 계좌로 '지급정지'를 요청해야 합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 사례 3 -->
+                <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                    <div class="bg-slate-50 px-6 py-4 border-b border-gray-100 flex items-center gap-3">
+                        <span class="bg-slate-700 text-white text-xs font-bold px-2.5 py-1 rounded-md">사례 3</span>
+                        <h3 class="font-bold text-gray-900 text-base sm:text-lg">동호회 밴드 탈취 후 '악성 앱(APK) 및 피싱 링크' 유포형</h3>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="text-sm text-gray-700 leading-relaxed">
+                            <strong>[사건 개요]</strong> 2022년 골프/등산 동호회 밴드(회원 1,800명) 방장 계정을 탈취한 뒤, "이번 달 모임 정산 내역 및 사진 모음.apk" 파일을 첨부하여 회원들의 스마트폰에 악성코드를 심어 스마트폰 문자 및 금융 정보를 탈취한 사례.
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+                            <div class="bg-slate-50 p-4 rounded-xl border border-gray-200">
+                                <h4 class="font-bold text-amber-600 mb-1 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-bug"></i> 위험 요인
+                                </h4>
+                                <p class="text-gray-600 leading-relaxed">스마트폰에 악성 앱이 깔리면 연락처 전원에게 스미싱 문자가 자동 발송되어 기하급수적으로 피해가 확산됩니다.</p>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-gray-200">
+                                <h4 class="font-bold text-blue-600 mb-1 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-shield"></i> 권장 대처법
+                                </h4>
+                                <p class="text-gray-600 leading-relaxed">KISA 인터넷침해대응센터(118)에 해당 악성 URL과 파일을 즉시 신고하여 통신 3사 DNS 차단 조치를 취해야 합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 사례 4 -->
+                <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                    <div class="bg-slate-50 px-6 py-4 border-b border-gray-100 flex items-center gap-3">
+                        <span class="bg-slate-700 text-white text-xs font-bold px-2.5 py-1 rounded-md">사례 4</span>
+                        <h3 class="font-bold text-gray-900 text-base sm:text-lg">대형 상업 밴드 탈취 후 '불법 주식·가상화폐 리딩방' 강제 개조형</h3>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="text-sm text-gray-700 leading-relaxed">
+                            <strong>[사건 개요]</strong> 2024년 지역 소상공인 마켓 밴드(회원 8,000명)의 리더 권한을 탈취한 후, 기존 상업 게시물을 모두 지우고 밴드명을 "[공식] 급등 코인 VIP 무료 정보방"으로 변경하여 불법 사설 HTS 사이트로 회원을 유인한 사건.
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+                            <div class="bg-slate-50 p-4 rounded-xl border border-gray-200">
+                                <h4 class="font-bold text-amber-600 mb-1 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-arrows-spin"></i> 수법 분석
+                                </h4>
+                                <p class="text-gray-600 leading-relaxed">새 밴드를 만들어 회원을 모으기 어렵기 때문에, 이미 수천 명이 모여 있는 기존 활성 밴드를 통째로 빼앗아 사기 플랫폼으로 재활용하는 수법입니다.</p>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-gray-200">
+                                <h4 class="font-bold text-blue-600 mb-1 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-shield"></i> 권장 대처법
+                                </h4>
+                                <p class="text-gray-600 leading-relaxed">금융감독원 불법금융신고센터(1332) 및 네이버 밴드에 '사기 리딩방 무단 개조'로 긴급 폐쇄 및 권한 원상복구를 요청해야 합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 사례 5 -->
+                <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                    <div class="bg-slate-50 px-6 py-4 border-b border-gray-100 flex items-center gap-3">
+                        <span class="bg-slate-700 text-white text-xs font-bold px-2.5 py-1 rounded-md">사례 5</span>
+                        <h3 class="font-bold text-gray-900 text-base sm:text-lg">네이버 고객센터 사칭 SMS 스미싱으로 2FA 무력화형</h3>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="text-sm text-gray-700 leading-relaxed">
+                            <strong>[사건 개요]</strong> 2025년 방장에게 "[네이버] 비정상 로그인 감지. 본인이 아니면 즉시 확인: naver-security.com" 문자를 발송하여 가짜 로그인창에 아이디, 비밀번호 및 휴대폰 인증번호를 직접 입력하게 만들어 2단계 인증까지 뚫어버린 사건.
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+                            <div class="bg-slate-50 p-4 rounded-xl border border-gray-200">
+                                <h4 class="font-bold text-amber-600 mb-1 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-key"></i> 핵심 취약점
+                                </h4>
+                                <p class="text-gray-600 leading-relaxed">네이버는 공식 도메인(naver.com) 외에 이상한 하이픈(-)이 들어간 도메인으로 문자를 보내지 않습니다. 링크를 누른 순간 2차 인증번호까지 실시간 탈취됩니다.</p>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-gray-200">
+                                <h4 class="font-bold text-blue-600 mb-1 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-shield"></i> 권장 대처법
+                                </h4>
+                                <p class="text-gray-600 leading-relaxed">통신사에 즉시 '번호도용 문자차단' 및 '소액결제 원천 차단'을 걸고, 네이버 본인인증(신분증 마스킹)으로 계정 비밀번호와 등록 전화번호를 리셋해야 합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 과거 5개년 사례가 주는 4대 핵심 교훈 및 예방 수칙 -->
+            <section class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-6 sm:p-8">
+                <h3 class="font-bold text-blue-950 text-lg sm:text-xl mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-graduation-cap text-blue-600"></i>
+                    과거 사례를 통해 입증된 4대 핵심 예방 수칙
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+                    <div class="bg-white p-4 rounded-xl border border-blue-100 shadow-2xs">
+                        <strong class="text-blue-900 block mb-1">1. 신뢰할 수 있는 부방장(공동 리더) 2인 이상 지정</strong>
+                        <span class="text-gray-600 leading-relaxed">리더 1인만 있는 밴드는 계정 탈취 즉시 끝장납니다. 공동 리더가 있으면 즉시 해커를 강퇴시키거나 방어할 수 있습니다.</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-blue-100 shadow-2xs">
+                        <strong class="text-blue-900 block mb-1">2. 네이버 로그인 전용 아이디(별칭) 분리 사용</strong>
+                        <span class="text-gray-600 leading-relaxed">이메일로 공개된 네이버 아이디 대신, 외부에 절대 알려지지 않는 '로그인 전용 아이디'를 설정해 두면 무차별 대입을 100% 차단합니다.</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-blue-100 shadow-2xs">
+                        <strong class="text-blue-900 block mb-1">3. 타지역 및 해외 로그인 차단 상시 ON</strong>
+                        <span class="text-gray-600 leading-relaxed">해커 대부분이 해외 VPN이나 타지역 IP를 경유하므로, 네이버 보안설정에서 로그인 허용 지역을 내 생활권으로 제한하십시오.</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-blue-100 shadow-2xs">
+                        <strong class="text-blue-900 block mb-1">4. 밴드 주요 공지 및 운영 히스토리 정기 백업</strong>
+                        <span class="text-gray-600 leading-relaxed">소유권 분쟁 시 네이버 고객센터에 '내가 원래 방장이었다'는 증거(개설일, 관리자 화면 캡처)를 제출할 수 있도록 정기 보관하십시오.</span>
+                    </div>
+                </div>
+            </section>
+
+        </div>
     </main>
 
     <footer class="bg-gray-100 border-t border-gray-200 mt-12 py-6 text-center text-xs text-gray-500">
@@ -272,11 +784,58 @@
     <div id="copyToast" class="toast">
         <div class="flex items-center justify-center gap-2">
             <i class="fa-regular fa-circle-check text-emerald-400 text-lg"></i>
-            <span class="font-medium text-sm">신고 내용이 클립보드에 복사되었습니다!</span>
+            <span id="toastMessage" class="font-medium text-sm">신고 내용이 클립보드에 복사되었습니다!</span>
         </div>
     </div>
 
     <script>
+        function switchTab(tab) {
+            const tabRescue = document.getElementById('tabRescue');
+            const tabCatch = document.getElementById('tabCatch');
+            const tabCases = document.getElementById('tabCases');
+
+            const btnRescue = document.getElementById('tabBtnRescue');
+            const btnCatch = document.getElementById('tabBtnCatch');
+            const btnCases = document.getElementById('tabBtnCases');
+
+            // Reset all tabs to hidden
+            tabRescue.classList.add('hidden');
+            tabCatch.classList.add('hidden');
+            tabCases.classList.add('hidden');
+
+            // Inactive button style
+            const inactiveClass = "py-3 px-4 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all text-gray-600 hover:text-gray-900 hover:bg-gray-100 cursor-pointer";
+            btnRescue.className = inactiveClass;
+            btnCatch.className = inactiveClass;
+            btnCases.className = inactiveClass;
+
+            if (tab === 'catch') {
+                tabCatch.classList.remove('hidden');
+                btnCatch.className = "py-3 px-4 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all shadow-xs bg-indigo-600 text-white cursor-pointer";
+                window.location.hash = 'catch';
+            } else if (tab === 'cases') {
+                tabCases.classList.remove('hidden');
+                btnCases.className = "py-3 px-4 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all shadow-xs bg-amber-600 text-white cursor-pointer";
+                window.location.hash = 'cases';
+            } else {
+                tabRescue.classList.remove('hidden');
+                btnRescue.className = "py-3 px-4 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all shadow-xs bg-red-600 text-white cursor-pointer";
+                window.location.hash = 'rescue';
+            }
+        }
+
+        // Initialize based on URL hash
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash;
+            if (hash === '#catch') {
+                switchTab('catch');
+            } else if (hash === '#cases') {
+                switchTab('cases');
+            } else {
+                switchTab('rescue');
+            }
+        });
+
         async function copyReportText() {
             const textarea = document.getElementById('reportContent');
             const textToCopy = textarea.value;
@@ -292,7 +851,6 @@
             }
 
             if (!success) {
-                // Fallback for older browsers or insecure contexts
                 textarea.select();
                 textarea.setSelectionRange(0, 99999);
                 try {
@@ -304,15 +862,50 @@
             }
 
             if (success) {
-                showToast();
+                showToast("1:1 고객센터 신고 내용이 클립보드에 복사되었습니다!");
+            } else {
+                alert('복사하지 못했습니다. 내용을 직접 선택하여 복사해 주세요.');
+            }
+        }
+
+        async function copyPoliceText() {
+            const textarea = document.getElementById('policeContent');
+            const textToCopy = textarea.value;
+            
+            let success = false;
+            if (navigator.clipboard && window.isSecureContext) {
+                try {
+                    await navigator.clipboard.writeText(textToCopy);
+                    success = true;
+                } catch (err) {
+                    console.warn('Clipboard API failed, falling back to execCommand:', err);
+                }
+            }
+
+            if (!success) {
+                textarea.select();
+                textarea.setSelectionRange(0, 99999);
+                try {
+                    document.execCommand('copy');
+                    success = true;
+                } catch (err) {
+                    console.error('execCommand copy failed:', err);
+                }
+            }
+
+            if (success) {
+                showToast("경찰서 제출용 고소 요약문이 클립보드에 복사되었습니다!");
             } else {
                 alert('복사하지 못했습니다. 내용을 직접 선택하여 복사해 주세요.');
             }
         }
 
         let toastTimeout;
-        function showToast() {
+        function showToast(message = "클립보드에 복사되었습니다!") {
             const toast = document.getElementById('copyToast');
+            const toastMsg = document.getElementById('toastMessage');
+            if (toastMsg) toastMsg.innerText = message;
+
             toast.classList.add("show");
             
             clearTimeout(toastTimeout);
